@@ -1,0 +1,38 @@
+---
+import Link from '../../components/home/Link.astro';
+import logo from '../../images/quitungo/logo.svg';
+---
+
+<main class="content">
+    <img src={logo.src} alt="Quitungo" class="logo" />
+    <Link href="categorias/quem-somos" color="white">Quem somos</Link>
+</main>
+
+<style>
+    .content {
+        @apply flex flex-col items-start h-[120vh] bg-cover;
+        background-image: url('../src/images/background/background-index.png');
+    }
+
+    .logo {
+        @apply h-72 -translate-x-28 -translate-y-12;
+    }
+
+    @media screen and (max-width: 992px) {
+        .logo {
+            @apply h-56 -translate-x-24 -translate-y-10;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .logo {
+            @apply h-48 -translate-x-20 -translate-y-8;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .logo {
+            @apply h-32 -translate-x-12 -translate-y-6;
+        }
+    }
+</style>

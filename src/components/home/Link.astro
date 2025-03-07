@@ -1,0 +1,40 @@
+---
+const { href, color = 'link' } = Astro.props;
+
+import flor from '../../images/icon/flor.svg';
+---
+
+<a href={`/categorias/${href}`} class={`link ${color}`}>
+    <img src={flor.src} alt="Flor" class="icon" />
+    <span class="text">
+        <slot />
+    </span>
+</a>
+
+<style>
+    .link {
+        @apply flex items-center gap-2 text-base font-bold;
+    }
+
+    .white {
+        @apply pl-8 mt-10 text-white transition hover:text-white/75;
+    }
+
+    .black {
+        @apply text-black transition hover:text-black/75;
+    }
+
+    .icon {
+        @apply w-6 h-6;
+    }
+
+    .text {
+        @apply inline-block;
+    }
+
+    @media screen and (max-width: 768px) {
+        .link {
+            @apply text-base;
+        }
+    }
+</style>

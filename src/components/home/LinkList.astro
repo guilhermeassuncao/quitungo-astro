@@ -1,0 +1,104 @@
+---
+const { links, margin } = Astro.props;
+
+import Link from './Link.astro';
+---
+
+<ul class="link-list">
+    {
+        links.map(([href, label]: [string, string]) => (
+            <li class={`item-margin-${margin}`}>
+                <Link href={href} color="black">
+                    {label}
+                </Link>
+            </li>
+        ))
+    }
+</ul>
+
+<style>
+    .link-list {
+        @apply flex mb-2;
+    }
+
+    .link-list:nth-child(1) {
+        @apply ml-20;
+    }
+
+    .link-list:nth-child(2) {
+        @apply ml-40;
+    }
+
+    .link-list:nth-child(3) {
+        @apply ml-52;
+    }
+
+    .item-margin-1 {
+        @apply ml-20;
+    }
+
+    .item-margin-2 {
+        @apply ml-24;
+    }
+
+    .item-margin-3 {
+        @apply ml-20;
+    }
+
+    @media screen and (max-width: 1400px) {
+        .link-list:nth-child(1) {
+            @apply ml-8;
+        }
+
+        .link-list:nth-child(2) {
+            @apply ml-28;
+        }
+
+        .link-list:nth-child(3) {
+            @apply ml-40;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .item-margin-1 {
+            @apply ml-8;
+        }
+
+        .item-margin-2 {
+            @apply ml-12;
+        }
+
+        .item-margin-3 {
+            @apply ml-8;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        .link-list:nth-child(1) {
+            @apply ml-0;
+        }
+
+        .link-list:nth-child(2) {
+            @apply ml-0;
+        }
+
+        .link-list:nth-child(3) {
+            @apply ml-0;
+        }
+
+        .item-margin-1 {
+            @apply ml-0;
+        }
+        .item-margin-2 {
+            @apply ml-0;
+        }
+
+        .item-margin-3 {
+            @apply ml-0;
+        }
+
+        .link-list {
+            @apply flex-col items-center gap-4 mb-4;
+        }
+    }
+</style>
