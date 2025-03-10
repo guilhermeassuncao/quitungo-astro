@@ -3,6 +3,5 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://guilhermeassuncao.github.io',
-    base: '/quitungo-astro',
+    site: 'https://astro.guilhermeassuncao.dev/',
 });
