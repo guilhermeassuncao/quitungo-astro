@@ -1,0 +1,50 @@
+---
+import { routes } from '../../utils/routes';
+
+const { className } = Astro.props;
+---
+
+<nav class={`nav-${className}`}>
+    <ul class={`nav-list-${className}`}>
+        <li>
+            <a href="/" class={`nav-link-${className}`}> Quem Somos </a>
+        </li>
+        {
+            routes.map(({ slug, title }) => (
+                <li>
+                    <a class={`nav-link-${className}`} href={`/${slug}`}>
+                        {title}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<style>
+    .nav-list-header {
+        @apply flex gap-4 flex-wrap items-center justify-center;
+    }
+
+    .nav-link-header {
+        @apply text-zinc-600 transition hover:text-orange-600 font-semibold;
+    }
+
+    .nav-link-header.active {
+        @apply text-orange-600;
+    }
+
+    .nav-list-footer {
+        @apply flex flex-wrap gap-4 items-center justify-center max-w-4xl mx-auto;
+    }
+
+    .nav-link-footer {
+        @apply text-slate-50 transition hover:text-slate-50/75 font-semibold;
+    }
+
+    @media screen and (max-width: 768px) {
+        .nav-list-footer {
+            @apply flex-col gap-6;
+        }
+    }
+</style>

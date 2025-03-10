@@ -1,65 +1,38 @@
 ---
-const links = [
-    [
-        ['trabalhos-academicos', 'Trabalhos Acadêmicos'],
-        ['cartografias', 'Cartografias'],
-        ['entrevistas-reportagens', 'Entrevistas e Reportagens'],
-    ],
-    [
-        ['trabalhos-tecnicos', 'Trabalhos Técnicos'],
-        ['fotografias', 'Fotografias'],
-        ['literatura-teatro', 'Literatura e Teatro'],
-    ],
-    [
-        ['cartilhas', 'Cartilhas'],
-        ['audiovisuais', 'Audiovisuais'],
-        ['artesanato-artes-plasticas', 'Artesanato e Artes Plásticas'],
-    ],
-];
-
+import { routes } from '../../utils/routes';
 import LinkList from '../../components/home/LinkList.astro';
-import ufes from '../../images/apoio/ufes.svg';
-import fapes from '../../images/apoio/fapes.svg';
+import Supporters from '../Supporters.astro';
+
+
+const chunkSize = 3;
+
+const links = Array.from({ length: Math.ceil(routes.length / chunkSize) }, (_, i) =>
+    routes.slice(i * chunkSize, (i + 1) * chunkSize).map(({ slug, title }) => [slug, title])
+);
 ---
 
-<footer class="footer">
-    <div class="sections">
-        {
-            links.map((column, columnIndex) => (
-                <LinkList links={column} margin={columnIndex + 1} />
-            ))
-        }
-    </div>
-    <div class="supporters">
-        <img src={ufes.src} alt="Ufes" class="supporter-logo" />
-        <img src={fapes.src} alt="Fapes" class="supporter-logo" />
-    </div>
+<footer class="content">
+    <nav class="sections">
+        {links.map((column, columnIndex) => (
+            <LinkList links={column} margin={columnIndex + 1} />
+        ))}
+    </nav>
+    <Supporters className="home" />
 </footer>
 
+
 <style>
-    .footer {
-        @apply flex items-center gap-4 pb-4 bg-orange-500;
+    .content {
+        @apply flex items-center gap-4 pb-4 bg-gradient-to-tr from-orange-500 to-orange-600 p-4;
     }
 
     .sections {
         @apply grid self-start mt-6 w-full;
     }
 
-    .supporters {
-        @apply ml-auto flex flex-col gap-2;
-    }
-
-    .supporter-logo {
-        @apply h-16 rounded-xl;
-    }
-
     @media screen and (max-width: 992px) {
-        .footer {
+        .content {
             @apply flex-col;
-        }
-
-        .supporters {
-            @apply ml-0;
         }
     }
 </style>

@@ -1,0 +1,45 @@
+---
+const { titulo } = Astro.props;
+---
+
+<h1>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="19"
+        height="22"
+        viewBox="0 0 19 22"
+        fill="none"
+    >
+        <path
+            d="M9.5 11.7695V21.0003"
+            stroke="#E7000B"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        <path
+            d="M9.5 19.4611V20.9995H13.3636C15.9243 20.9995 18 18.9332 18 16.3842V15.6149C18 15.1901 17.654 14.8457 17.2273 14.8457H14.1364C11.5758 14.8457 9.5 16.912 9.5 19.4611Z"
+            stroke="#E7000B"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        <path
+            d="M1 15.6149V16.3842C1 18.9332 3.07578 20.9995 5.63636 20.9995H9.5V19.4611C9.5 16.912 7.42422 14.8457 4.86364 14.8457H1.77273C1.34597 14.8457 1 15.1901 1 15.6149Z"
+            stroke="#E7000B"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        <path
+            d="M4.0918 6.38462V1L9.50089 4.07692L14.91 1V3.69231V6.38462C14.91 9.35846 12.4883 11.7692 9.50089 11.7692C6.51352 11.7692 4.0918 9.35846 4.0918 6.38462Z"
+            stroke="#FF6900"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+    </svg>
+    {titulo}
+</h1>
+
+<style>
+    h1 {
+        @apply text-lg font-semibold text-zinc-600 flex items-center gap-2 mb-3;
+    }
+</style>

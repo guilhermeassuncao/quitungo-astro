@@ -1,0 +1,21 @@
+---
+import Image from '../../components/Image.astro';
+import Nav from './Nav.astro';
+---
+
+<header class="content">
+    <div class="container">
+        <Image className="header"/>
+        <Nav className="header"/>
+    </div>
+</header>
+
+<style>
+    .content {
+        @apply bg-gradient-to-tr from-slate-50 to-slate-100 p-4;
+    }
+
+    .container {
+        @apply mx-auto flex items-center flex-col gap-8;
+    }
+</style>

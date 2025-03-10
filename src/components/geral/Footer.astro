@@ -1,148 +1,47 @@
 ---
-import { routes } from '../../utils/routes';
+import Nav from './Nav.astro';
 
-import logo from '../../images/quitungo/logo.svg';
-import ufes from '../../images/apoio/ufes.svg';
-import fapes from '../../images/apoio/fapes.svg';
+import Image from '../../components/Image.astro';
+import Supporters from '../Supporters.astro';
+import Social from './Social.astro';
+
+const ano = new Date().getFullYear();
 ---
 
 <footer class="content">
     <div class="container">
         <header class="header">
-            <img src={logo.src} alt="Logo" class="logo" />
-            <div class="supporters">
-                <img src={ufes.src} alt="Ufes" class="supporter-logo" />
-                <img src={fapes.src} alt="Fapes" class="supporter-logo" />
-            </div>
+            <Image className="footer" />
+            <Supporters className="geral" />
         </header>
-        <section class="nav">
-            <ul class="nav-list">
-                {
-                    routes.map(({ slug, title }) => (
-                        <li class="nav-item">
-                            <a class="nav-link" href={`/${slug}`}>
-                                {title}
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
-        </section>
+        <Nav className="footer" />
         <footer class="footer">
-            <ul class="social-links">
-                <li class="social-item">
-                    <a href="#" target="_blank" class="social-link">
-                        <svg
-                            class="social-icon"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </li>
-
-                <li class="social-item">
-                    <a
-                        href="#"
-                        rel="noreferrer"
-                        target="_blank"
-                        class="social-link"
-                    >
-                        <svg
-                            class="social-icon"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </li>
-
-                <li class="social-item">
-                    <a
-                        href="#"
-                        rel="noreferrer"
-                        target="_blank"
-                        class="social-link"
-                    >
-                    <svg class="social-icon" fill="currentColor" viewBox="0 0 25 18">
-                        <path
-                            d="M24.7869 4.67409C24.6334 3.19151 24.303 1.55258 23.0868 0.691282C22.1449 0.0233669 20.9068 -0.00132528 19.7509 4.62065e-05C17.3077 0.00141769 14.863 0.00416603 12.4198 0.00553752C10.0697 0.00828049 7.71968 0.00965868 5.36964 0.0124017C4.38794 0.0137731 3.43366 -0.0630235 2.52189 0.362138C1.739 0.726954 1.12613 1.42091 0.757307 2.19305C0.245892 3.26693 0.138953 4.48346 0.0772541 5.67116C-0.0365459 7.834 -0.0242061 10.0023 0.111531 12.1638C0.21162 13.741 0.465267 15.4841 1.68416 16.4894C2.76458 17.3795 4.28922 17.4234 5.69047 17.4248C10.1383 17.4289 14.5874 17.4331 19.0366 17.4358C19.607 17.4372 20.202 17.4262 20.7834 17.3631C21.9269 17.2397 23.0169 16.9119 23.7518 16.0643C24.4935 15.2099 24.6841 14.0208 24.7965 12.8948C25.0708 10.1628 25.068 7.40472 24.7869 4.67409ZM9.8476 12.5478V4.88805L16.4782 8.71723L9.8476 12.5478Z"
-                            fill="currentColor"></path>
-                    </svg>
-                    </a>
-                </li>
-            </ul>
-            <p class="copyright">Copyright © 2022. All rights reserved.</p>
+            <Social />
+            <p class="copyright">
+                Copyright © {ano}. Todos os direitos reservados.
+            </p>
         </footer>
     </div>
 
     <style>
         .content {
-            @apply bg-orange-500 mt-auto;
+            @apply bg-gradient-to-tr from-orange-500 to-orange-600 mt-auto p-4;
         }
 
         .container {
-            @apply mx-auto px-24 py-8 flex flex-col gap-10;
+            @apply mx-auto px-24 flex flex-col gap-8;
         }
 
         .header {
             @apply flex items-center justify-around;
         }
 
-        .supporters {
-            @apply flex items-center gap-8;
-        }
-
-        .supporter-logo {
-            @apply h-16 rounded-xl;
-        }
-
-        .nav-list {
-            @apply flex flex-wrap gap-6 items-center justify-center max-w-4xl mx-auto;
-        }
-
-        .nav-item {
-            @apply list-none;
-        }
-
-        .nav-link {
-            @apply text-slate-50 transition hover:text-slate-50/75 font-bold;
-        }
-
         .footer {
-            @apply flex justify-between;
+            @apply flex justify-around;
         }
 
         .copyright {
             @apply text-center text-sm text-slate-50;
-        }
-
-        .social-links {
-            @apply flex justify-center gap-4;
-        }
-
-        .social-item {
-            @apply list-none;
-        }
-
-        .social-link {
-            @apply text-slate-50 transition hover:text-slate-50/75;
-        }
-
-        .social-icon {
-            @apply size-6;
-        }
-
-        .logo {
-            @apply h-20;
         }
 
         @media screen and (max-width: 992px) {
@@ -153,10 +52,6 @@ import fapes from '../../images/apoio/fapes.svg';
 
         @media screen and (max-width: 768px) {
             .header {
-                @apply flex-col gap-6;
-            }
-
-            .supporters {
                 @apply flex-col gap-6;
             }
 

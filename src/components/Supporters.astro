@@ -1,0 +1,41 @@
+---
+import ufes from '../images/apoio/ufes.svg';
+import fapes from '../images/apoio/fapes.svg';
+
+const { className } = Astro.props;
+---
+
+<div class={`supporters-${className}`}>
+    <img src={ufes.src} alt="Ufes" class={`supporter-logo-${className}`} />
+    <img src={fapes.src} alt="Fapes" class={`supporter-logo-${className}`} />
+</div>
+
+<style>
+    .supporters-home {
+        @apply ml-auto flex flex-col gap-2;
+    }
+
+    .supporter-logo-home {
+        @apply h-16 rounded-xl;
+    }
+
+    .supporters-geral {
+        @apply flex items-center gap-8;
+    }
+
+    .supporter-logo-geral {
+        @apply h-16 rounded-xl;
+    }
+
+    @media screen and (max-width: 992px) {
+        .supporters-home {
+            @apply ml-0;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .supporters-geral {
+            @apply flex-col gap-6;
+        }
+    }
+</style>

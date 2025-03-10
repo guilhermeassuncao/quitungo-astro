@@ -4,7 +4,7 @@ const { href, color = 'link' } = Astro.props;
 import flor from '../../images/icon/flor.svg';
 ---
 
-<a href={`/categorias/${href}`} class={`link ${color}`}>
+<a href={href} class={`link ${color}`}>
     <img src={flor.src} alt="Flor" class="icon" />
     <span class="text">
         <slot />

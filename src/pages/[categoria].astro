@@ -1,0 +1,90 @@
+---
+import { routes } from '../utils/routes';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/geral/Header.astro';
+import Footer from '../components/geral/Footer.astro';
+import Main from '../components/geral/Main.astro';
+import Card from '../components/Card.astro';
+import CardGrid from '../components/CardGrid.astro';
+import CardPost from '../components/CardPost.astro';
+import Title from '../components/Title.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const posts = [
+    {
+        id: 1,
+        imageUrl: 'https://picsum.photos/800/600',
+        title: 'Post 1',
+        text: 'Este é o resumo do primeiro post.',
+        author: 'Autor 1',
+        location: 'Localização 1',
+        date: '01/01/2025',
+    },
+    {
+        id: 2,
+        imageUrl: 'https://picsum.photos/1024/768',
+        title: 'Post 2',
+        text: 'Este é o resumo do segundo post.',
+        author: 'Autor 2',
+        location: 'Localização 2',
+        date: '02/01/2025',
+    },
+    {
+        id: 3,
+        imageUrl: 'https://picsum.photos/1000/600',
+        title: 'Post 3',
+        text: 'Este é o resumo do terceiro post.',
+        author: 'Autor 3',
+        location: 'Localização 3',
+        date: '03/01/2025',
+    },
+    {
+        id: 4,
+        imageUrl: 'https://picsum.photos/1455/800',
+        title: 'Post 4',
+        text: 'Este é o resumo do quarto post.',
+        author: 'Autor 4',
+        location: 'Localização 4',
+        date: '04/01/2025',
+    },
+];
+
+export async function getStaticPaths() {
+    return routes.map(({ slug }) => ({
+        params: { categoria: slug },
+    }));
+}
+
+const { categoria } = Astro.params;
+
+const titulo = routes.find((route) => route.slug === categoria);
+---
+
+<Layout>
+    <main class="flex flex-col">
+        <Header />
+
+        <Main>
+            <Card>
+                <Breadcrumb rota={titulo?.title} />
+
+                <Title titulo={titulo?.title} />
+            </Card>
+            <CardGrid>
+                {posts.map((post) => <CardPost post={post} />)}
+            </CardGrid>
+        </Main>
+        <Footer />
+    </main>
+</Layout>
+
+<style>
+    main {
+        background-image: url('/public/background/backgorund-geral.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+    }
+</style>

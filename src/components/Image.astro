@@ -1,0 +1,35 @@
+---
+import logo from '../images/quitungo/logo.svg';
+
+const { className } = Astro.props;
+---
+
+<img src={logo.src} alt="Quitungo" class={`logo-${className}`} />
+
+<style>
+    .logo-home {
+        @apply h-72 -translate-x-28 -translate-y-12;
+    }
+
+    .logo-footer, .logo-header {
+        @apply h-20;
+    }
+
+    @media screen and (max-width: 992px) {
+        .logo-home {
+            @apply h-56 -translate-x-24 -translate-y-10;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .logo-home {
+            @apply h-48 -translate-x-20 -translate-y-8;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .logo-home {
+            @apply h-32 -translate-x-12 -translate-y-6;
+        }
+    }
+</style>

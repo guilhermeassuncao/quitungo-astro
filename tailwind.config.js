@@ -3,11 +3,6 @@ export default {
     content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
     theme: {
         extend: {
-            colors: {
-                primary: '#F47E57',
-                secondary: '#EDDB5C',
-                red: '#FF4500',
-            },
             fontFamily: {
                 sans: ['DM Sans', 'sans-serif'],
             },
