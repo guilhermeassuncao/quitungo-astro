@@ -1,5 +1,5 @@
 ---
-const { post } = Astro.props;
+const { categoria, post } = Astro.props;
 ---
 
 <div class="content group">
@@ -34,7 +34,8 @@ const { post } = Astro.props;
             <div
                 class="mt-6 flex items-center text-orange-500 text-sm font-medium"
             >
-                Leia mais
+                <a href={`${categoria}/${post.id}`}> Leia mais</a>
+
                 <svg
                     viewBox="0 0 16 16"
                     fill="none"

@@ -3,11 +3,12 @@ import { routes } from '../utils/routes';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/geral/Header.astro';
 import Footer from '../components/geral/Footer.astro';
+import Section from '../components/geral/Section.astro';
 import Main from '../components/geral/Main.astro';
 import Card from '../components/Card.astro';
 import CardGrid from '../components/CardGrid.astro';
 import CardPost from '../components/CardPost.astro';
-import Title from '../components/Title.astro';
+import TitleMain from '../components/TitleMain.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
 const posts = [
@@ -58,33 +59,22 @@ export async function getStaticPaths() {
 const { categoria } = Astro.params;
 
 const titulo = routes.find((route) => route.slug === categoria);
+const tituloPagina = `Quitungo | ${titulo?.title}`;
 ---
 
-<Layout>
-    <main class="flex flex-col">
+<Layout title={tituloPagina}>
+    <Main>
         <Header />
-
-        <Main>
+        <Section>
             <Card>
                 <Breadcrumb rota={titulo?.title} />
 
-                <Title titulo={titulo?.title} />
+                <TitleMain titulo={titulo?.title} />
             </Card>
             <CardGrid>
-                {posts.map((post) => <CardPost post={post} />)}
+                {posts.map((post) => <CardPost categoria={titulo?.slug} post={post} />)}
             </CardGrid>
-        </Main>
+        </Section>
         <Footer />
-    </main>
+    </Main>
 </Layout>
-
-<style>
-    main {
-        background-image: url('/public/background/backgorund-geral.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        min-height: 100vh;
-    }
-</style>
