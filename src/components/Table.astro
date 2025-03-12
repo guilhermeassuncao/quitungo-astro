@@ -2,29 +2,55 @@
 const { opcoes } = Astro.props;
 ---
 
-<table class="w-full text-left border-collapse border border-gray-300">
-    <thead>
-        <tr>
+<div class="content">
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                {
+                    opcoes.headers.map((header: string) => (
+                        <th scope="col" class="th">
+                            {header}
+                        </th>
+                    ))
+                }
+            </tr>
+        </thead>
+        <tbody>
             {
-                opcoes.headers.map((header) => (
-                    <th class="py-2 px-4 bg-gray-100 border border-gray-300">
-                        {header}
-                    </th>
+                opcoes.rows.map((row: string) => (
+                    <tr class="tr">
+                        {opcoes.headers.map((header: number) => (
+                            <td class="td">{row[header]}</td>
+                        ))}
+                    </tr>
                 ))
             }
-        </tr>
-    </thead>
-    <tbody>
-        {
-            opcoes.rows.map((row) => (
-                <tr>
-                    {opcoes.headers.map((header) => (
-                        <td class="py-2 px-4 border border-gray-300">
-                            {row[header]}
-                        </td>
-                    ))}
-                </tr>
-            ))
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .content {
+        @apply relative overflow-x-auto shadow-md rounded-md;
+    }
+
+    .table {
+        @apply w-full text-sm text-left text-zinc-700;
+    }
+
+    .thead {
+        @apply text-zinc-600 bg-gray-100;
+    }
+
+    .th {
+        @apply px-6 py-3;
+    }
+
+    .tr {
+        @apply bg-white border-b hover:bg-gray-50;
+    }
+
+    .td {
+        @apply px-6 py-4;
+    }
+</style>

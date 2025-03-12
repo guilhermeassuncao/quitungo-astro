@@ -1,0 +1,39 @@
+---
+import Image from '../components/Image.astro';
+import Text from '../components/Text.astro';
+
+const { src, alt = 'Imagem', caption = '', textos } = Astro.props;
+---
+
+<div class="content">
+    <div class="box">
+        <Image src={src} alt={alt} caption={caption} />
+    </div>
+    <div class="box">
+        <Text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+            doloremque saepe architecto maiores repudiandae amet perferendis
+            repellendus, reprehenderit voluptas sequi.
+        </Text>
+        <Text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+            doloremque saepe architecto maiores repudiandae amet perferendis
+            repellendus, reprehenderit voluptas sequi.
+        </Text>
+        <Text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+            doloremque saepe architecto maiores repudiandae amet perferendis
+            repellendus, reprehenderit voluptas sequi.
+        </Text>
+    </div>
+</div>
+
+<style>
+    ..content {
+        @apply flex flex-col items-center lg:flex-row lg:gap-8;
+    }
+
+    .box {
+        @apply lg:w-1/2;
+    }
+</style>
