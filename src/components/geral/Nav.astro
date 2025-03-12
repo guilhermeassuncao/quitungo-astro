@@ -2,20 +2,22 @@
 import { routes } from '../../utils/routes';
 
 const { className } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class={`nav-${className}`}>
     <ul class={`nav-list-${className}`}>
-        <li>
-            <a href="/" class={`nav-link-${className}`}> Quem Somos </a>
-        </li>
         {
             routes.map(({ slug, title }) => (
                 <li>
-                    <a class={`nav-link-${className}`} href={`/${slug}`}>
+                    <a
+                        class={`nav-link-${className} ${currentPath === `/${slug}` ? 'active' : ''}`}
+                        href={`/${slug}`}
+                    >
                         {title}
                     </a>
                 </li>
+                <span class={`nav-block-${className}`}></span>
             ))
         }
     </ul>
@@ -27,11 +29,11 @@ const { className } = Astro.props;
     }
 
     .nav-link-header {
-        @apply text-zinc-600 transition hover:text-orange-600 font-semibold;
+        @apply text-zinc-700 transition hover:text-orange-500 font-semibold;
     }
 
     .nav-link-header.active {
-        @apply text-orange-600;
+        @apply text-orange-500;
     }
 
     .nav-list-footer {
@@ -40,6 +42,14 @@ const { className } = Astro.props;
 
     .nav-link-footer {
         @apply text-slate-50 transition hover:text-slate-50/75 font-semibold;
+    }
+
+    .nav-block-header:not(:last-child) {
+        @apply h-2 w-2 bg-red-600 rounded-sm;
+    }
+
+    .nav-block-footer:not(:last-child) {
+        @apply h-2 w-2 bg-slate-50 rounded-sm;
     }
 
     @media screen and (max-width: 768px) {

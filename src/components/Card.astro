@@ -4,6 +4,18 @@
 
 <style>
     .card {
-        @apply bg-white rounded-lg shadow-lg px-4 py-3;
+        @apply bg-slate-50 rounded-lg shadow-lg p-10 relative;
+    }
+
+    .card::before {
+        content: '';
+
+        width: 130px;
+        height: 100px;
+        background: url('/background/background-title.svg') no-repeat center;
+        position: absolute;
+        top: -1rem;
+        left: -2rem;
+        z-index: 1;
     }
 </style>

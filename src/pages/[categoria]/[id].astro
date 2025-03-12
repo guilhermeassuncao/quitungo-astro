@@ -6,8 +6,12 @@ import Footer from '../../components/geral/Footer.astro';
 import Section from '../../components/geral/Section.astro';
 import Main from '../../components/geral/Main.astro';
 import Card from '../../components/Card.astro';
-import TitleMain from '../../components/TitleMain.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
+import Title from '../../components/Title.astro';
+import Text from '../../components/Text.astro';
+import List from '../../components/List.astro';
+import Table from '../../components/Table.astro';
+import Blockquote from '../../components/Blockquote.astro';
+import CardGridPaginas from '../../components/CardGridPaginas.astro';
 
 export async function getStaticPaths() {
     return routes.map(({ slug }) => ({
@@ -17,8 +21,22 @@ export async function getStaticPaths() {
 
 const { categoria, id } = Astro.params;
 
-const titulo = routes.find((route) => route.slug === categoria);
-const tituloPagina = `Quitungo | ${titulo?.title} - Teste de página`;
+const categoriaSelecionada = routes.find((route) => route.slug === categoria);
+const tituloPagina = `Quitungo | ${categoriaSelecionada?.title} - Teste de página`;
+
+const list = [
+    'Lorem ipsum dolor',
+    'Tenetur doloremque saepe architecto',
+    'Sit amet consectetur adipisicing eli',
+];
+
+const table = {
+    headers: ['Nome', 'Idade'],
+    rows: [
+        { Nome: 'João', Idade: 25 },
+        { Nome: 'Maria', Idade: 30 },
+    ],
+};
 ---
 
 <Layout title={tituloPagina}>
@@ -26,453 +44,362 @@ const tituloPagina = `Quitungo | ${titulo?.title} - Teste de página`;
         <Header />
         <Section>
             <Card>
-                <Breadcrumb rota={titulo?.title} />
+                <CardGridPaginas>
+                    <Title tamanho="h1">
+                        LoremLorem Ipsum: A Simulação de Texto para Design
+                    </Title>
+                    <Text>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Tenetur doloremque saepe architecto. Lorem ipsum dolor
+                        sit amet consectetur adipisicing elit. Tenetur
+                        doloremque saepe architecto.Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe architecto.
+                    </Text>
+                    <Text>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Tenetur doloremque saepe architecto. Lorem ipsum dolor
+                        sit amet consectetur adipisicing elit. Tenetur
+                        doloremque saepe architecto.Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe architecto.
+                    </Text>
+                    <Text>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Tenetur doloremque saepe architecto. Lorem ipsum dolor
+                        sit amet consectetur adipisicing elit. Tenetur
+                        doloremque saepe architecto.Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe
+                        architecto.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Tenetur doloremque saepe architecto.
+                    </Text>
+                    <List opcoes={list} />
+                    <Blockquote>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Tenetur doloremque saepe architecto.
+                    </Blockquote>
+                    <Table opcoes={table} />
+                </CardGridPaginas>
 
-                <TitleMain titulo={titulo?.title} />
-            </Card>
-            <Card>
-                <div class="container mx-auto mt-10 px-12">
-                    <section class="mx-auto py-8">
-                        <div class="mb-8">
-                            <h1
-                                class="text-4xl font-extrabold text-gray-900 sm:text-5xl"
-                            >
-                                Título
-                            </h1>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Tabelas
+                    </h2>
+                </div>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Imagens
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <img
+                                src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                class="rounded w-full object-cover"
+                                alt=""
+                            />
+                        </div>
+                        <div>
+                            <img
+                                src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                class="rounded w-full object-cover"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Mídia com texto
+                    </h2>
+                    <div
+                        class="flex flex-col md:flex-row md:items-center md:gap-8"
+                    >
+                        <div class="md:w-1/2">
+                            <img
+                                src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                class="rounded"
+                                alt=""
+                            />
+                        </div>
+                        <div class="md:w-1/2">
                             <h2
-                                class="text-3xl font-bold text-gray-900 sm:text-4xl"
-                            >
-                                Título
-                            </h2>
-                            <h3
                                 class="text-2xl font-semibold text-gray-900 sm:text-3xl"
                             >
-                                Título
-                            </h3>
-                            <h4
-                                class="text-xl font-medium text-gray-900 sm:text-2xl"
-                            >
-                                Título
-                            </h4>
-                            <h5
-                                class="text-lg font-normal text-gray-900 sm:text-xl"
-                            >
-                                Título
-                            </h5>
-                            <h6
-                                class="text-base font-light text-gray-900 sm:text-lg"
-                            >
-                                Título
-                            </h6>
-                        </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Parágrafo
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit.
                             </h2>
-                            <p class="text-gray-700">
+
+                            <p class="mt-4 text-gray-700">
                                 Lorem ipsum dolor sit amet consectetur
                                 adipisicing elit. Tenetur doloremque saepe
-                                architecto. Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Tenetur doloremque
-                                saepe architecto.
+                                architecto maiores repudiandae amet perferendis
+                                repellendus, reprehenderit voluptas sequi.
+                            </p>
+                            <p class="mt-4 text-gray-700">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Tenetur doloremque saepe
+                                architecto maiores repudiandae amet perferendis
+                                repellendus, reprehenderit voluptas sequi.
+                            </p>
+                            <p class="mt-4 text-gray-700">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Tenetur doloremque saepe
+                                architecto maiores repudiandae amet perferendis
+                                repellendus, reprehenderit voluptas sequi.
+                            </p>
+                            <p class="mt-4 text-gray-700">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Tenetur doloremque saepe
+                                architecto maiores repudiandae amet perferendis
+                                repellendus, reprehenderit voluptas sequi.
+                            </p>
+                            <p class="mt-4 text-gray-700">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Tenetur doloremque saepe
+                                architecto maiores repudiandae amet perferendis
+                                repellendus, reprehenderit voluptas sequi.
+                            </p>
+                            <p class="mt-4 text-gray-700">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Tenetur doloremque saepe
+                                architecto maiores repudiandae amet perferendis
+                                repellendus, reprehenderit voluptas sequi.
                             </p>
                         </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Listas
-                            </h2>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Galeria de imagem
+                    </h2>
 
-                            <ul
-                                class="list-disc list-inside text-gray-700 mb-4"
-                            >
-                                <li>Item 1</li>
-                                <li>Item 2</li>
-                                <li>Item 3</li>
-                            </ul>
-
-                            <ol class="list-decimal list-inside text-gray-700">
-                                <li>Item 1</li>
-                                <li>Item 2</li>
-                                <li>Item 3</li>
-                            </ol>
-                        </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Citação
-                            </h2>
-                            <blockquote
-                                class="text-lg italic text-gray-700 leading-relaxed"
-                            >
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Tenetur doloremque saepe
-                                architecto.
-                            </blockquote>
-                        </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Tabelas
-                            </h2>
-                            <table
-                                class="w-full text-left border-collapse border border-gray-300"
-                            >
-                                <thead>
-                                    <tr>
-                                        <th
-                                            class="py-2 px-4 bg-gray-100 border border-gray-300"
-                                            >Nome</th
-                                        >
-                                        <th
-                                            class="py-2 px-4 bg-gray-100 border border-gray-300"
-                                            >Idade</th
-                                        >
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td
-                                            class="py-2 px-4 border border-gray-300"
-                                            >João</td
-                                        >
-                                        <td
-                                            class="py-2 px-4 border border-gray-300"
-                                            >25</td
-                                        >
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="py-2 px-4 border border-gray-300"
-                                            >Maria</td
-                                        >
-                                        <td
-                                            class="py-2 px-4 border border-gray-300"
-                                            >30</td
-                                        >
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Imagens
-                            </h2>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <img
-                                        src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                        class="rounded w-full object-cover"
-                                        alt=""
-                                    />
-                                </div>
-                                <div>
-                                    <img
-                                        src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                        class="rounded w-full object-cover"
-                                        alt=""
-                                    />
-                                </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="grid gap-4">
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
+                                    alt=""
+                                />
                             </div>
                         </div>
-
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Mídia com texto
-                            </h2>
-                            <div
-                                class="flex flex-col md:flex-row md:items-center md:gap-8"
-                            >
-                                <div class="md:w-1/2">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                        class="rounded"
-                                        alt=""
-                                    />
-                                </div>
-                                <div class="md:w-1/2">
-                                    <h2
-                                        class="text-2xl font-semibold text-gray-900 sm:text-3xl"
-                                    >
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit.
-                                    </h2>
-
-                                    <p class="mt-4 text-gray-700">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Tenetur doloremque
-                                        saepe architecto maiores repudiandae
-                                        amet perferendis repellendus,
-                                        reprehenderit voluptas sequi.
-                                    </p>
-                                    <p class="mt-4 text-gray-700">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Tenetur doloremque
-                                        saepe architecto maiores repudiandae
-                                        amet perferendis repellendus,
-                                        reprehenderit voluptas sequi.
-                                    </p>
-                                    <p class="mt-4 text-gray-700">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Tenetur doloremque
-                                        saepe architecto maiores repudiandae
-                                        amet perferendis repellendus,
-                                        reprehenderit voluptas sequi.
-                                    </p>
-                                    <p class="mt-4 text-gray-700">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Tenetur doloremque
-                                        saepe architecto maiores repudiandae
-                                        amet perferendis repellendus,
-                                        reprehenderit voluptas sequi.
-                                    </p>
-                                    <p class="mt-4 text-gray-700">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Tenetur doloremque
-                                        saepe architecto maiores repudiandae
-                                        amet perferendis repellendus,
-                                        reprehenderit voluptas sequi.
-                                    </p>
-                                    <p class="mt-4 text-gray-700">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Tenetur doloremque
-                                        saepe architecto maiores repudiandae
-                                        amet perferendis repellendus,
-                                        reprehenderit voluptas sequi.
-                                    </p>
-                                </div>
+                        <div class="grid gap-4">
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
+                                    alt=""
+                                />
                             </div>
                         </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Galeria de imagem
-                            </h2>
-
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <div class="grid gap-4">
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
-                                <div class="grid gap-4">
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
-                                <div class="grid gap-4">
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
-                                <div class="grid gap-4">
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            class="h-auto max-w-full rounded-lg"
-                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
+                        <div class="grid gap-4">
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
+                                    alt=""
+                                />
                             </div>
                         </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Vídeos
-                            </h2>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <video class="rounded-lg w-full" controls>
-                                        <source
-                                            src="{{asset('video/video.mp4')}}"
-                                            type="video/mp4"
-                                        />
-                                        Seu navegador não suporta a tag de vídeo.
-                                    </video>
-                                </div>
-                                <div>
-                                    <video class="rounded-lg w-full" controls>
-                                        <source
-                                            src="{{asset('video/video.mp4')}}"
-                                            type="video/mp4"
-                                        />
-                                        Seu navegador não suporta a tag de vídeo.
-                                    </video>
-                                </div>
+                        <div class="grid gap-4">
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
+                                    alt=""
+                                />
                             </div>
                         </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Áudio
-                            </h2>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <audio class="w-full" controls>
-                                        <source
-                                            src="{{asset('audio/audio.mp3')}}"
-                                            type="audio/mp3"
-                                        />
-                                        Seu navegador não suporta a tag de áudio.
-                                    </audio>
-                                </div>
-                                <div>
-                                    <audio class="w-full" controls>
-                                        <source
-                                            src="{{asset('audio/audio.mp3')}}"
-                                            type="audio/mp3"
-                                        />
-                                        Seu navegador não suporta a tag de áudio.
-                                    </audio>
-                                </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Vídeos
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <video class="rounded-lg w-full" controls>
+                                <source
+                                    src="{{asset('video/video.mp4')}}"
+                                    type="video/mp4"
+                                />
+                                Seu navegador não suporta a tag de vídeo.
+                            </video>
+                        </div>
+                        <div>
+                            <video class="rounded-lg w-full" controls>
+                                <source
+                                    src="{{asset('video/video.mp4')}}"
+                                    type="video/mp4"
+                                />
+                                Seu navegador não suporta a tag de vídeo.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Áudio
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <audio class="w-full" controls>
+                                <source
+                                    src="{{asset('audio/audio.mp3')}}"
+                                    type="audio/mp3"
+                                />
+                                Seu navegador não suporta a tag de áudio.
+                            </audio>
+                        </div>
+                        <div>
+                            <audio class="w-full" controls>
+                                <source
+                                    src="{{asset('audio/audio.mp3')}}"
+                                    type="audio/mp3"
+                                />
+                                Seu navegador não suporta a tag de áudio.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Documentos
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-medium text-gray-800"
+                                    >Documento 1</span
+                                >
+                                <a
+                                    href="{{ asset('documento/documento.pdf') }}"
+                                    download
+                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                                >
+                                    Baixar
+                                </a>
                             </div>
                         </div>
-                        <div class="mb-8">
-                            <h2
-                                class="text-2xl font-semibold text-gray-900 mb-4"
-                            >
-                                Documentos
-                            </h2>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <div
-                                        class="flex justify-between items-center"
-                                    >
-                                        <span
-                                            class="text-lg font-medium text-gray-800"
-                                            >Documento 1</span
-                                        >
-                                        <a
-                                            href="{{ asset('documento/documento.pdf') }}"
-                                            download
-                                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-                                        >
-                                            Baixar
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div
-                                        class="flex justify-between items-center"
-                                    >
-                                        <span
-                                            class="text-lg font-medium text-gray-800"
-                                            >Documento 2</span
-                                        >
-                                        <a
-                                            href="{{ asset('documento/documento.pdf') }}"
-                                            download
-                                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-                                        >
-                                            Baixar
-                                        </a>
-                                    </div>
-                                </div>
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-medium text-gray-800"
+                                    >Documento 2</span
+                                >
+                                <a
+                                    href="{{ asset('documento/documento.pdf') }}"
+                                    download
+                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                                >
+                                    Baixar
+                                </a>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </Card>
         </Section>
-        <Footer />
     </Main>
 </Layout>
+<Footer />

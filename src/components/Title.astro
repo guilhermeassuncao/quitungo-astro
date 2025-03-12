@@ -1,0 +1,50 @@
+---
+const { tamanho } = Astro.props;
+---
+
+{
+    tamanho === 'h1' && (
+        <h1 class="h1">
+            <slot />
+        </h1>
+    )
+}
+{
+    tamanho === 'h2' && (
+        <h2 class="h2">
+            <slot />
+        </h2>
+    )
+}
+{
+    tamanho === 'h3' && (
+        <h3 class="h4">
+            <slot />
+        </h3>
+    )
+}
+{
+    tamanho === 'h4' && (
+        <h4 class="h5">
+            <slot />
+        </h4>
+    )
+}
+
+<style>
+    .h1 {
+        @apply text-5xl sm:text-4xl font-extrabold text-zinc-700 text-center;
+    }
+
+    .h2 {
+        @apply text-4xl sm:text-3xl font-bold text-zinc-700 text-center;
+    }
+
+    .h3 {
+        @apply text-3xl sm:text-2xl font-bold text-zinc-700 text-center;
+    }
+
+    .h4 {
+        @apply text-2xl sm:text-xl font-bold text-zinc-700 text-center;
+    }
+</style>

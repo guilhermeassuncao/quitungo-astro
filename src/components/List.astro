@@ -1,0 +1,15 @@
+---
+const { opcoes }: { opcoes?: string[] } = Astro.props;
+---
+
+<ul class="list">
+  {opcoes?.map((opcao: string) => (
+    <li>{opcao}</li>
+  ))}
+</ul>
+
+<style>
+    .list {
+        @apply list-disc ps-5 leading-relaxed;
+    }
+</style>

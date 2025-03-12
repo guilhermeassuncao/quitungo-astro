@@ -1,0 +1,30 @@
+---
+const { opcoes } = Astro.props;
+---
+
+<table class="w-full text-left border-collapse border border-gray-300">
+    <thead>
+        <tr>
+            {
+                opcoes.headers.map((header) => (
+                    <th class="py-2 px-4 bg-gray-100 border border-gray-300">
+                        {header}
+                    </th>
+                ))
+            }
+        </tr>
+    </thead>
+    <tbody>
+        {
+            opcoes.rows.map((row) => (
+                <tr>
+                    {opcoes.headers.map((header) => (
+                        <td class="py-2 px-4 border border-gray-300">
+                            {row[header]}
+                        </td>
+                    ))}
+                </tr>
+            ))
+        }
+    </tbody>
+</table>
