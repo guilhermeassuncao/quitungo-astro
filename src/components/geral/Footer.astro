@@ -12,14 +12,15 @@ const ano = new Date().getFullYear();
     <div class="container">
         <header class="header">
             <Logo className="footer" />
-            <Supporters className="geral" />
+            <Nav className="footer" />
         </header>
-        <Nav className="footer" />
+
         <footer class="footer">
             <Social />
             <p class="copyright">
                 Copyright © {ano}. Todos os direitos reservados.
             </p>
+            <Supporters className="geral" />
         </footer>
     </div>
 
@@ -29,7 +30,7 @@ const ano = new Date().getFullYear();
         }
 
         .container {
-            @apply mx-auto px-24 flex flex-col gap-8;
+            @apply max-w-[96rem] mx-auto px-24 flex flex-col gap-8;
         }
 
         .header {
@@ -37,11 +38,11 @@ const ano = new Date().getFullYear();
         }
 
         .footer {
-            @apply flex justify-around;
+            @apply flex justify-between items-center;
         }
 
         .copyright {
-            @apply text-center text-sm text-slate-50;
+            @apply text-center text-sm text-slate-50
         }
 
         @media screen and (max-width: 992px) {
