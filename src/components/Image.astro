@@ -15,14 +15,14 @@ const { src, alt = 'Imagem', caption = '' } = Astro.props;
 
 <style>
     .figure {
-        @apply text-center;
+        @apply flex flex-col items-center gap-2;
     }
 
     .image {
-        @apply rounded w-full object-cover;
+        @apply rounded md:w-3/4 object-cover;
     }
 
     .caption {
-        @apply mt-2 text-sm text-zinc-400;
+        @apply text-sm text-zinc-400;
     }
 </style>

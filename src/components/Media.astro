@@ -1,0 +1,45 @@
+---
+import Text from '../components/Text.astro';
+
+const { src, alt = 'Imagem', caption = '', texto } = Astro.props;
+---
+
+<div class="content">
+    <div class="box-left">
+        <figure class="figure">
+            <img src={src} class="image" alt={alt} />
+            {caption && <figcaption class="caption">{caption}</figcaption>}
+        </figure>
+    </div>
+    <div class="box-right">
+        <Text>
+            {texto}
+        </Text>
+    </div>
+
+    <style>
+        .content {
+            @apply flex flex-col items-center lg:flex-row lg:gap-8;
+        }
+
+        .box-left {
+            @apply lg:w-[55%];
+        }
+
+        .box-right {
+            @apply lg:w-[45%];
+        }
+
+        .figure {
+            @apply flex flex-col items-center gap-2;
+        }
+
+        .image {
+            @apply rounded w-full object-cover;
+        }
+
+        .caption {
+            @apply text-sm text-zinc-400;
+        }
+    </style>
+</div>

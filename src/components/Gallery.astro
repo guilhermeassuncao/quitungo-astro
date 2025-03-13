@@ -1,0 +1,21 @@
+---
+const { images } = Astro.props;
+---
+
+<div class="gallery">
+    {
+        images.map((image: { url: string; alt: string }) => (
+            <img class="image" src={image.url} alt={image.alt} />
+        ))
+    }
+</div>
+
+<style>
+    .gallery {
+        @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+    }
+
+    .image {
+        @apply rounded w-full h-40 object-cover;
+    }
+</style>

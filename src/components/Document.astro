@@ -1,0 +1,22 @@
+---
+const { href, name } = Astro.props;
+---
+
+<div class="content">
+    <span class="text">{name}</span>
+    <a href={href} class="link" download target="_blank"> Baixar </a>
+</div>
+
+<style>
+    .content {
+        @apply flex items-center justify-between;
+    }
+
+    .text {
+        @apply leading-relaxed;
+    }
+
+    .link {
+        @apply bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition cursor-pointer;
+    }
+</style>

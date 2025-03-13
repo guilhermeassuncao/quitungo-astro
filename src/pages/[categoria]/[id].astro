@@ -11,6 +11,11 @@ import Text from '../../components/Text.astro';
 import List from '../../components/List.astro';
 import Table from '../../components/Table.astro';
 import Image from '../../components/Image.astro';
+import Video from '../../components/Video.astro';
+import Audio from '../../components/Audio.astro';
+import Media from '../../components/Media.astro';
+import Document from '../../components/Document.astro';
+import Gallery from '../../components/Gallery.astro';
 import Blockquote from '../../components/Blockquote.astro';
 import CardGridPaginas from '../../components/CardGridPaginas.astro';
 
@@ -38,6 +43,60 @@ const table = {
         { Nome: 'Maria', Idade: 30 },
     ],
 };
+
+const texto =
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe architecto maiores repudiandae amet perferendisrepellendus, reprehenderit voluptas sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe architecto maiores repudiandae amet perferendisrepellendus, reprehenderit voluptas sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe architecto maiores repudiandae amet perferendisrepellendus, reprehenderit voluptas sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe architecto maiores repudiandae amet perferendisrepellendus, reprehenderit voluptas sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe architecto maiores repudiandae amet perferendisrepellendus, reprehenderit voluptas sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur doloremque saepe architecto maiores repudiandae amet perferendisrepellendus, reprehenderit voluptas sequi';
+
+const images = [
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg',
+        alt: 'Image 1',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg',
+        alt: 'Image 2',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg',
+        alt: 'Image 3',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg',
+        alt: 'Image 4',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg',
+        alt: 'Image 5',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg',
+        alt: 'Image 6',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg',
+        alt: 'Image 7',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg',
+        alt: 'Image 8',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg',
+        alt: 'Image 9',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg',
+        alt: 'Image 10',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg',
+        alt: 'Image 11',
+    },
+    {
+        url: 'https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg',
+        alt: 'Image 12',
+    },
+];
 ---
 
 <Layout title={tituloPagina}>
@@ -49,6 +108,7 @@ const table = {
                     <Title tamanho="h1">
                         LoremLorem Ipsum: A Simulação de Texto para Design
                     </Title>
+                    <Title tamanho="h2"> Texto </Title>
                     <Text>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Tenetur doloremque saepe architecto. Lorem ipsum dolor
@@ -118,215 +178,44 @@ const table = {
                         architecto.Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Tenetur doloremque saepe architecto.
                     </Text>
+                    <Title tamanho="h2"> Lista </Title>
                     <List opcoes={list} />
+                    <Title tamanho="h2"> Citação </Title>
                     <Blockquote>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Tenetur doloremque saepe architecto.
                     </Blockquote>
+                    <Title tamanho="h2"> Tabela </Title>
                     <Table opcoes={table} />
+                    <Title tamanho="h2"> Imagem </Title>
                     <Image
                         src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Imagem" caption="Foto de: Juliana alves"
+                        alt="Imagem"
+                        caption="Foto de: Juliana alves"
+                    />
+                    <Title tamanho="h2"> Mídia com texto </Title>
+                    <Media
+                        src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Imagem"
+                        caption="Foto de: Juliana alves"
+                        texto={texto}
+                    />
+                    <Title tamanho="h2"> Galeria de imagem </Title>
+                    <Gallery images={images} />
+                    <Title tamanho="h2"> Vídeo </Title>
+                    <Video
+                        src="https://file-examples.com/storage/fe6a71582967c9a269c25cd/2017/04/file_example_MP4_480_1_5MG.mp4"
+                    />
+                    <Title tamanho="h2"> Áudio </Title>
+                    <Audio
+                        src="https://file-examples.com/storage/fe6a71582967c9a269c25cd/2017/11/file_example_MP3_700KB.mp3"
+                    />
+                    <Title tamanho="h2"> Documento </Title>
+                    <Document
+                        href="https://pdfobject.com/pdf/sample.pdf"
+                        name="Quilombo de Sapê do Norte"
                     />
                 </CardGridPaginas>
-
-                <div class="mb-8">
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-                        Imagens
-                    </h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div></div>
-                    </div>
-                </div>
-
-                <div class="mb-8">
-         
-                </div>
-                <div class="mb-8">
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-                        Galeria de imagem
-                    </h2>
-
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="grid gap-4">
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div class="grid gap-4">
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div class="grid gap-4">
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div class="grid gap-4">
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-8">
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-                        Vídeos
-                    </h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <video class="rounded-lg w-full" controls>
-                                <source
-                                    src="{{asset('video/video.mp4')}}"
-                                    type="video/mp4"
-                                />
-                                Seu navegador não suporta a tag de vídeo.
-                            </video>
-                        </div>
-                        <div>
-                            <video class="rounded-lg w-full" controls>
-                                <source
-                                    src="{{asset('video/video.mp4')}}"
-                                    type="video/mp4"
-                                />
-                                Seu navegador não suporta a tag de vídeo.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-8">
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-                        Áudio
-                    </h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <audio class="w-full" controls>
-                                <source
-                                    src="{{asset('audio/audio.mp3')}}"
-                                    type="audio/mp3"
-                                />
-                                Seu navegador não suporta a tag de áudio.
-                            </audio>
-                        </div>
-                        <div>
-                            <audio class="w-full" controls>
-                                <source
-                                    src="{{asset('audio/audio.mp3')}}"
-                                    type="audio/mp3"
-                                />
-                                Seu navegador não suporta a tag de áudio.
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-8">
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-                        Documentos
-                    </h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-medium text-gray-800"
-                                    >Documento 1</span
-                                >
-                                <a
-                                    href="{{ asset('documento/documento.pdf') }}"
-                                    download
-                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-                                >
-                                    Baixar
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-lg font-medium text-gray-800"
-                                    >Documento 2</span
-                                >
-                                <a
-                                    href="{{ asset('documento/documento.pdf') }}"
-                                    download
-                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-                                >
-                                    Baixar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </Card>
         </Section>
     </Main>

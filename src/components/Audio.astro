@@ -1,0 +1,19 @@
+---
+const { src } = Astro.props;
+---
+
+<div class="content">
+    <audio class="audio" controls>
+        <source src={src} />
+    </audio>
+</div>
+
+<style>
+    .content {
+        @apply flex items-center justify-center;
+    }
+
+    .audio {
+        @apply rounded md:w-3/4;
+    }
+</style>

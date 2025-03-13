@@ -3,11 +3,12 @@ import { routes } from '../../utils/routes';
 import LinkList from '../../components/home/LinkList.astro';
 import Supporters from '../Supporters.astro';
 
+const routesUpdate = routes.filter(route => route.slug !== 'quem-somos');
 
 const chunkSize = 3;
 
 const links = Array.from({ length: Math.ceil(routes.length / chunkSize) }, (_, i) =>
-    routes.slice(i * chunkSize, (i + 1) * chunkSize).map(({ slug, title }) => [slug, title])
+routesUpdate.slice(i * chunkSize, (i + 1) * chunkSize).map(({ slug, title }) => [slug, title])
 );
 ---
 
