@@ -1,54 +1,41 @@
 ---
 import { routes } from '../../utils/routes';
 
-const { className } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class={`nav-${className}`}>
-    <ul class={`nav-list-${className}`}>
+<nav class="nav">
+    <ul class="nav-list">
         {
             routes.map(({ slug, title }) => (
                 <li>
                     <a
-                        class={`nav-link-${className} ${currentPath === `/${slug}` ? 'active' : ''}`}
+                        class={`nav-link ${currentPath === `/${slug}` ? 'active' : ''}`}
                         href={`/${slug}`}
                     >
                         {title}
                     </a>
                 </li>
-                <span class={`nav-block-${className}`}></span>
+                <span class="nav-block"></span>
             ))
         }
     </ul>
 </nav>
 
 <style>
-    .nav-list-header {
+    .nav-list {
         @apply flex gap-4 flex-wrap items-center justify-center;
     }
 
-    .nav-link-header {
-        @apply text-zinc-700 transition hover:text-orange-500 font-semibold;
+    .nav-link {
+        @apply text-zinc-700 transition hover:text-slate-50 font-semibold;   
     }
 
-    .nav-link-header.active {
-        @apply text-orange-500;
+    .nav-link.active {
+        @apply text-slate-50;
     }
 
-    .nav-list-footer {
-        @apply flex flex-wrap gap-4 items-center justify-center max-w-4xl mx-auto;
-    }
-
-    .nav-link-footer {
-        @apply text-slate-50 transition hover:text-slate-50/75 font-semibold;
-    }
-
-    .nav-block-header:not(:last-child) {
+    .nav-block:not(:last-child) {
         @apply h-2 w-2 bg-red-600 rounded-sm;
-    }
-
-    .nav-block-footer:not(:last-child) {
-        @apply h-2 w-2 bg-slate-50 rounded-sm;
     }
 </style>

@@ -12,7 +12,7 @@ const ano = new Date().getFullYear();
     <div class="container">
         <header class="header">
             <Logo className="footer" />
-            <Nav className="footer" />
+            <Supporters className="geral" />
         </header>
 
         <footer class="footer">
@@ -20,21 +20,21 @@ const ano = new Date().getFullYear();
             <p class="copyright">
                 Copyright © {ano}. Todos os direitos reservados.
             </p>
-            <Supporters className="geral" />
+
         </footer>
     </div>
 
     <style>
         .content {
-            @apply bg-gradient-to-tr from-orange-500 to-orange-600 mt-auto p-4;
+            @apply bg-gradient-to-tr from-orange-500 to-orange-600 mt-auto p-2;
         }
 
         .container {
-            @apply max-w-[96rem] mx-auto px-24 flex flex-col gap-8;
+            @apply max-w-[96rem] mx-auto px-24 flex flex-col gap-6;
         }
 
         .header {
-            @apply flex items-center justify-around;
+            @apply flex items-center justify-between;
         }
 
         .footer {
