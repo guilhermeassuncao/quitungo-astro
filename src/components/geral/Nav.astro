@@ -1,7 +1,5 @@
 ---
-import { get } from '../../utils/api.js';
-
-const routes = await get('/categorias');
+import { routes } from '../../utils/routes.js';
 
 const currentPath = Astro.url.pathname;
 
@@ -12,11 +10,6 @@ type Route = {
 ---
 <nav class="nav">
     <ul class="nav-list">
-        <li>
-            <a class={`nav-link ${currentPath === '/' ? 'active' : ''}`} href="/">
-                Home
-            </a>
-        </li>
         {
             routes.map(({ slug, title }: Route) => (
                 <li>
