@@ -18,14 +18,14 @@ const { tamanho } = Astro.props;
 }
 {
     tamanho === 'h3' && (
-        <h3 class="h4">
+        <h3 class="h3">
             <slot />
         </h3>
     )
 }
 {
     tamanho === 'h4' && (
-        <h4 class="h5">
+        <h4 class="h4">
             <slot />
         </h4>
     )
@@ -33,18 +33,18 @@ const { tamanho } = Astro.props;
 
 <style>
     .h1 {
-        @apply text-5xl sm:text-4xl font-extrabold text-zinc-800 text-center;
+        @apply text-xl md:text-2xl font-black text-zinc-800 text-center;
     }
 
     .h2 {
-        @apply text-4xl sm:text-3xl font-bold text-zinc-800 text-left;
+        @apply text-lg md:text-xl font-extrabold text-zinc-800 text-left;
     }
 
     .h3 {
-        @apply text-3xl sm:text-2xl font-bold text-zinc-800 text-left;
+        @apply text-base md:text-lg font-bold text-zinc-800 text-left;
     }
 
     .h4 {
-        @apply text-2xl sm:text-xl font-bold text-zinc-800 text-left;
+        @apply text-sm md:text-base font-semibold text-zinc-800 text-left;
     }
 </style>

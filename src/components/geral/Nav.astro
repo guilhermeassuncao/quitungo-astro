@@ -1,5 +1,6 @@
 ---
 import { routes } from '../../utils/routes.js';
+import flor from '../../images/icon/flor.svg';
 
 const currentPath = Astro.url.pathname;
 
@@ -8,38 +9,64 @@ type Route = {
     title: string;
 };
 ---
+
 <nav class="nav">
     <ul class="nav-list">
         {
-            routes.map(({ slug, title }: Route) => (
-                <li>
-                    <a
-                        class={`nav-link ${currentPath === `/${slug}` ? 'active' : ''}`}
-                        href={`/${slug}`}
-                    >
-                        {title}
-                    </a>
-                </li>
-                <span class="nav-block"></span>
+            routes.slice(0, 5).map(({ slug, title }: Route) => (
+                <>
+                    <li>
+                        <a
+                            class={`nav-link ${currentPath === `/${slug}` ? 'active' : ''}`}
+                            href={`/${slug}`}
+                        >
+                            <img src={flor.src} alt="Flor" class="nav-icon" />
+                            {title}
+                        </a>
+                    </li>
+                    <span class="nav-block" />
+                </>
+            ))
+        }
+    </ul>
+    <ul class="nav-list">
+        {
+            routes.slice(5, 10).map(({ slug, title }: Route) => (
+                <>
+                    <li>
+                        <a
+                            class={`nav-link ${currentPath === `/${slug}` ? 'active' : ''}`}
+                            href={`/${slug}`}
+                        >
+                            <img src={flor.src} alt="Flor" class="nav-icon" />
+                            {title}
+                        </a>
+                    </li>
+                    <span class="nav-block" />
+                </>
             ))
         }
     </ul>
 </nav>
 
 <style>
+    .nav {
+        @apply flex flex-col gap-4 mb-4;
+    }
+
+    .nav-icon {
+        @apply w-6 h-6;
+    }
+
     .nav-list {
-        @apply flex gap-4 flex-wrap items-center justify-center;
+        @apply flex flex-col md:flex-row gap-4 md:gap-8 flex-wrap items-center justify-center;
     }
 
     .nav-link {
-        @apply text-zinc-800 transition hover:text-slate-50 font-semibold;   
+        @apply text-zinc-800 text-lg transition hover:text-slate-50 font-semibold flex items-center gap-2;
     }
 
     .nav-link.active {
         @apply text-slate-50;
-    }
-
-    .nav-block:not(:last-child) {
-        @apply h-2 w-2 bg-red-600 rounded-sm;
     }
 </style>
