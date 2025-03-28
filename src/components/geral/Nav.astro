@@ -1,6 +1,8 @@
 ---
-import { routes } from '../../utils/routes.js';
+import { getCategories } from '../../utils/api.js';
 import flor from '../../images/icon/flor.svg';
+
+const routes = await getCategories('/categorias'); 
 
 const currentPath = Astro.url.pathname;
 
@@ -8,8 +10,8 @@ type Route = {
     slug: string;
     title: string;
 };
----
 
+---
 <nav class="nav">
     <ul class="nav-list">
         {

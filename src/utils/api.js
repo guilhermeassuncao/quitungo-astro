@@ -7,7 +7,7 @@ const BASE_URL = process.env.STRAPI_URL;
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN;
 
 
-export async function get(uri) {
+export async function getCategories(uri) {
     try {
         const { data } = await axios.get(`${BASE_URL}${uri}`, {
             headers: {

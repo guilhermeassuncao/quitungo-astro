@@ -1,9 +1,13 @@
 ---
-import { routes } from '../../utils/routes';
+import { getCategories } from '../../utils/api.js';
 import LinkList from '../../components/home/LinkList.astro';
 import Supporters from '../Supporters.astro';
 
-const routesUpdate = routes.filter(route => route.slug !== 'quem-somos');
+type Route = { slug: string; title: string };
+
+const routes: Route[] = await getCategories('/categorias'); 
+
+const routesUpdate = routes.filter((route: Route) => route.slug !== 'quem-somos');
 
 const chunkSize = 3;
 
