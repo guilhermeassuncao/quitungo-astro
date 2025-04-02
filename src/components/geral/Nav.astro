@@ -14,6 +14,15 @@ type Route = {
 ---
 <nav class="nav">
     <ul class="nav-list">
+        <li>
+            <a
+                class={`nav-link ${currentPath === '/' ? 'active' : ''}`}
+                href="/quem-somos"
+            >
+                <img src={flor.src} alt="Flor" class="nav-icon" />
+                Quem Somos
+            </a>
+        </li>
         {
             routes.slice(0, 5).map(({ slug, title }: Route) => (
                 <>
@@ -61,7 +70,7 @@ type Route = {
     }
 
     .nav-list {
-        @apply flex flex-col md:flex-row gap-4 flex-wrap items-center justify-center;
+        @apply flex flex-col md:flex-row gap-4 flex-wrap items-center justify-center list-none;
     }
 
     .nav-link {

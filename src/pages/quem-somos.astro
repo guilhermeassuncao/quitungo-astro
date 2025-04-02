@@ -1,65 +1,26 @@
 ---
-import { getCategories, getPagesByCategory } from '../../utils/api.js';
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/geral/Header.astro';
-import Footer from '../../components/geral/Footer.astro';
-import Section from '../../components/geral/Section.astro';
-import Main from '../../components/geral/Main.astro';
-import Card from '../../components/Card.astro';
-import Title from '../../components/Title.astro';
-import Image from '../../components/Image.astro';
-import Video from '../../components/Video.astro';
-import Audio from '../../components/Audio.astro';
-import Media from '../../components/Media.astro';
-import Document from '../../components/Document.astro';
-import Gallery from '../../components/Gallery.astro';
-import CardGridPaginas from '../../components/CardGridPaginas.astro';
+import { getPageQuemSomos } from '../utils/api.js';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/geral/Header.astro';
+import Footer from '../components/geral/Footer.astro';
+import Section from '../components/geral/Section.astro';
+import Main from '../components/geral/Main.astro';
+import Card from '../components/Card.astro';
+import CardGridPaginas from '../components/CardGridPaginas.astro';
+import TitleMain from '../components/TitleMain.astro';
+import Title from '../components/Title.astro';
+import Image from '../components/Image.astro';
+import Video from '../components/Video.astro';
+import Audio from '../components/Audio.astro';
+import Media from '../components/Media.astro';
+import Document from '../components/Document.astro';
+import Gallery from '../components/Gallery.astro';
 
-type Route = {
-    slug: string;
-    title: string;
-    description?: string;
-};
+const pagina = await getPageQuemSomos();
 
-type Page = {
-    id: number;
-};
+console.log(pagina);
 
-export async function getStaticPaths() {
-    const routes = await getCategories();
-
-    const paths: {
-        params: { categoria: string; id: string };
-        props: { routes: any };
-    }[] = [];
-
-    for (const route of routes) {
-        const pages: { id: number }[] = await getPagesByCategory(route.title);
-
-        pages.forEach((page) => {
-            paths.push({
-                params: { categoria: route.slug, id: String(page.id) },
-                props: { routes },
-            });
-        });
-    }
-
-    return paths;
-}
-
-const { categoria, id } = Astro.params;
-const { routes }: { routes: Route[] } = Astro.props;
-
-const categoriaSelecionada = routes.find(
-    (route: Route) => route.slug === categoria
-);
-
-const paginas = await getPagesByCategory(categoriaSelecionada?.title);
-const paginaSelecionada = paginas.find(
-    (pagina: Page) => String(pagina.id) === id
-);
-
-const tituloPagina = `Quitungo | ${categoriaSelecionada?.title} - ${paginaSelecionada.Dados.Titulo}`;
+const tituloPagina = `Quitungo | Quem Somos`;
 ---
 
 <Layout title={tituloPagina}>
@@ -68,8 +29,10 @@ const tituloPagina = `Quitungo | ${categoriaSelecionada?.title} - ${paginaSeleci
         <Section>
             <Card>
                 <CardGridPaginas>
+                    <TitleMain titulo="Quem Somos" texto="Nossa História" />
+
                     {
-                        paginaSelecionada.Conteudo.map((item: any) => {
+                        pagina.Conteudo.map((item: any) => {
                             switch (item.__component) {
                                 case 'pagina.titulo':
                                     switch (item.Tamanho) {
@@ -158,6 +121,6 @@ const tituloPagina = `Quitungo | ${categoriaSelecionada?.title} - ${paginaSeleci
                 </CardGridPaginas>
             </Card>
         </Section>
+        <Footer />
     </Main>
 </Layout>
-<Footer />

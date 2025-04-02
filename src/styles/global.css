@@ -8,3 +8,39 @@
 body {
     @apply font-sans text-zinc-800;
 }
+
+p {
+    @apply leading-relaxed mb-3;
+}
+
+ul {
+    @apply list-disc ps-5 leading-relaxed mb-3;
+}
+
+blockquote {
+    @apply italic text-zinc-800 leading-relaxed text-center mb-3;
+}
+
+.table {
+    @apply w-full relative overflow-x-auto shadow-md rounded-md mb-3;
+}
+
+table {
+    @apply min-w-full w-full text-sm text-left text-zinc-800;
+}
+
+thead {
+    @apply text-zinc-600;
+}
+
+tr:nth-child(1) {
+    @apply bg-gray-100 hover:bg-gray-100 text-zinc-600 font-semibold;
+}
+
+tr {
+    @apply bg-white border-b hover:bg-gray-50;
+}
+
+td {
+    @apply px-6 py-4;
+}

@@ -1,6 +1,4 @@
 ---
-import Text from '../components/Text.astro';
-
 const { src, alt = 'Imagem', caption = '', texto } = Astro.props;
 ---
 
@@ -12,9 +10,7 @@ const { src, alt = 'Imagem', caption = '', texto } = Astro.props;
         </figure>
     </div>
     <div class="box-right">
-        <Text>
-            {texto}
-        </Text>
+        <div set:html={texto} />
     </div>
 
     <style>

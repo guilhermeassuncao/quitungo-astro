@@ -7,12 +7,10 @@ type Route = { slug: string; title: string };
 
 const routes: Route[] = await getCategories(); 
 
-const routesUpdate = routes.filter((route: Route) => route.slug !== 'quem-somos');
-
 const chunkSize = 3;
 
 const links = Array.from({ length: Math.ceil(routes.length / chunkSize) }, (_, i) =>
-routesUpdate.slice(i * chunkSize, (i + 1) * chunkSize).map(({ slug, title }) => [slug, title])
+routes.slice(i * chunkSize, (i + 1) * chunkSize).map(({ slug, title }) => [slug, title])
 );
 ---
 
