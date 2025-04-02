@@ -5,7 +5,7 @@ import Supporters from '../Supporters.astro';
 
 type Route = { slug: string; title: string };
 
-const routes: Route[] = await getCategories('/categorias'); 
+const routes: Route[] = await getCategories(); 
 
 const routesUpdate = routes.filter((route: Route) => route.slug !== 'quem-somos');
 

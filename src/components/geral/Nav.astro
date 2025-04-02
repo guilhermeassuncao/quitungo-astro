@@ -2,7 +2,7 @@
 import { getCategories } from '../../utils/api.js';
 import flor from '../../images/icon/flor.svg';
 
-const routes = await getCategories('/categorias'); 
+const routes = await getCategories(); 
 
 const currentPath = Astro.url.pathname;
 
