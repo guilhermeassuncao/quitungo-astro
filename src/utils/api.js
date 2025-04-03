@@ -45,7 +45,7 @@ export async function getPagesByCategory(categoryName) {
 
 export async function getPageQuemSomos() {
     try {
-        const uri = `/historia??populate=Conteudo.Imagem&populate=Conteudo.Video&populate=Conteudo.Documento&populate=Conteudo.Galeria.Imagem&populate=Conteudo.Audio&populate=Conteudo.Imagem.Imagem`;
+        const uri = `/historia?populate=Conteudo.Imagem&populate=Conteudo.Video&populate=Conteudo.Documento&populate=Conteudo.Galeria.Imagem&populate=Conteudo.Audio&populate=Conteudo.Imagem.Imagem`;
 
         const { data } = await axios.get(`${BASE_URL}${uri}`, {
             headers: {
