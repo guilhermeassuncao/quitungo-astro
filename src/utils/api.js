@@ -22,7 +22,6 @@ export async function getCategories() {
         }));
     } catch (error) {
         console.error(error);
-        console.error(BASE_URL);
         return [];
     }
 }
@@ -40,7 +39,6 @@ export async function getPagesByCategory(categoryName) {
         return data.data;
     } catch (error) {
         console.error(error);
-        console.error(BASE_URL);
         return [];
     }
 }
@@ -58,7 +56,6 @@ export async function getPageQuemSomos() {
         return data.data;
     } catch (error) {
         console.error(error);
-        console.error(BASE_URL);
         return [];
     }
 }
