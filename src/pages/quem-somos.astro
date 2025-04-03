@@ -16,9 +16,7 @@ import Media from '../components/Media.astro';
 import Document from '../components/Document.astro';
 import Gallery from '../components/Gallery.astro';
 
-const pagina = await getPageQuemSomos();
-
-console.log(pagina);
+const pagina = await getPageQuemSomos().catch(() => ({ Conteudo: [] }));
 
 const tituloPagina = `Quitungo | Quem Somos`;
 ---
