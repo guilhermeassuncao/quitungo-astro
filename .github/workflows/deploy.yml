@@ -22,13 +22,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload your site output
         uses: withastro/action@v2
-      - name: Debug environment variables
+      - name: Verificar variáveis de ambiente
         run: |
-          echo "STRAPI_URL is set: ${#STRAPI_URL} characters"  # Mostra apenas o tamanho por segurança
-          echo "STRAPI_TOKEN is set: ${#STRAPI_TOKEN} characters"  # Mostra apenas o tamanho por segurança
-          # Se quiser ver os valores reais (CUIDADO - isso expõe os segredos nos logs)
-          # echo "STRAPI_URL: $STRAPI_URL"
-          # echo "STRAPI_TOKEN: $STRAPI_TOKEN"
+          echo "STRAPI_URL=$STRAPI_URL"
+          echo "STRAPI_TOKEN=$STRAPI_TOKEN"
   deploy:
     needs: build
     runs-on: ubuntu-latest
