@@ -9,7 +9,7 @@ const ano = new Date().getFullYear();
 <footer class="content">
     <div class="container">
         <header class="header">
-            <Logo className="footer" />
+            <a href="/"><Logo className="footer" /></a>
             <Supporters className="geral" />
         </header>
 
@@ -18,7 +18,6 @@ const ano = new Date().getFullYear();
             <p class="copyright">
                 Copyright © {ano}. Todos os direitos reservados.
             </p>
-
         </footer>
     </div>
 
@@ -40,7 +39,7 @@ const ano = new Date().getFullYear();
         }
 
         .copyright {
-            @apply text-center text-sm text-slate-50
+            @apply text-center text-sm text-slate-50;
         }
 
         @media screen and (max-width: 992px) {
