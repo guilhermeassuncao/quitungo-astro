@@ -18,7 +18,7 @@ const links = Array.from(
 );
 ---
 
-<footer class="content hidden">
+<footer class="content">
     <nav class="sections">
         {
             links.map((column, columnIndex) => (
@@ -28,47 +28,10 @@ const links = Array.from(
     </nav>
     <Supporters className="home" />
 </footer>
-<footer class="content-minimized">
-    <button id="toggle-footer" class="icon" aria-label="Expandir footer">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="currentColor"
-            viewBox="0 0 448 512"
-        >
-            <path
-                d="M201.4 97.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V173.3L86.6 302.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"
-            ></path>
-        </svg>
-    </button>
-</footer>
 
 <style>
     .content {
         @apply flex items-center gap-4 pb-4 bg-gradient-to-tr from-orange-400 to-orange-500 px-4 py-1 fixed bottom-0 left-0 w-full;
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
-    }
-
-    .content.hidden {
-        opacity: 0;
-        transform: translateY(100%);
-        pointer-events: none;
-    }
-
-    .content-minimized {
-        @apply flex items-center justify-center bg-orange-500 fixed bottom-0 left-0 w-full;
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
-    }
-
-    .content-minimized.hidden {
-        opacity: 0;
-        transform: translateY(100%);
-        pointer-events: none;
     }
 
     .icon {
@@ -85,17 +48,3 @@ const links = Array.from(
         }
     }
 </style>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleFooter = document.getElementById('toggle-footer');
-        const content = document.querySelector('footer.content');
-        const contentMinimized = document.querySelector('footer.content-minimized');
-
-        if (toggleFooter && content && contentMinimized) {
-            toggleFooter.addEventListener('click', () => {
-                content.classList.toggle('hidden');
-                contentMinimized.classList.toggle('hidden');
-            });
-        }
-    });
-</script>
