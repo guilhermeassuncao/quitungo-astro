@@ -1,37 +1,33 @@
 ---
 import { getCategories } from '../../utils/api.js';
-import LinkList from '../../components/home/LinkList.astro';
 import Supporters from '../Supporters.astro';
+import Link from './Link.astro';
 
 type Route = { slug: string; title: string };
 
 const routes: Route[] = await getCategories();
-
-const chunkSize = 3;
-
-const links = Array.from(
-    { length: Math.ceil(routes.length / chunkSize) },
-    (_, i) =>
-        routes
-            .slice(i * chunkSize, (i + 1) * chunkSize)
-            .map(({ slug, title }) => [slug, title])
-);
 ---
 
 <footer class="content">
     <nav class="sections">
-        {
-            links.map((column, columnIndex) => (
-                <LinkList links={column} margin={columnIndex + 1} />
-            ))
-        }
+        {routes.map((route) => (
+            <Link href={`/categorias/${route.slug}`} color="black">
+                {route.title}
+            </Link>
+        ))}
     </nav>
     <Supporters className="home" />
 </footer>
 
 <style>
     .content {
-        @apply flex items-center gap-4 pb-4 bg-gradient-to-tr from-orange-400 to-orange-500 px-4 py-1 fixed bottom-0 left-0 w-full;
+        @apply flex flex-col flex-wrap items-center justify-between gap-4 pb-4 bg-gradient-to-tr from-orange-400 to-orange-500 px-4 py-1;
+    }
+
+    @media (min-width: 992px) {
+        .content {
+            @apply fixed top-0 right-0 h-full;
+        }
     }
 
     .icon {
@@ -39,12 +35,6 @@ const links = Array.from(
     }
 
     .sections {
-        @apply grid self-start mt-6 w-full;
-    }
-
-    @media screen and (max-width: 992px) {
-        .content {
-            @apply flex-col;
-        }
+        @apply flex flex-col items-center mt-10 gap-8;
     }
 </style>
