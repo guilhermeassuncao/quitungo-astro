@@ -8,7 +8,7 @@ const { className } = Astro.props;
 
 <style>
     .logo-home {
-        @apply h-56 -translate-x-24 -translate-y-10;
+        @apply h-[18rem] translate-x-[-2%];
     }
 
     .logo-header {
@@ -21,19 +21,19 @@ const { className } = Astro.props;
 
     @media screen and (max-width: 992px) {
         .logo-home {
-            @apply h-48 -translate-x-20 -translate-y-8;
+            @apply h-[12rem];
         }
     }
 
     @media screen and (max-width: 768px) {
         .logo-home {
-            @apply h-40 -translate-x-16 -translate-y-6;
+            @apply h-[10rem];
         }
     }
 
     @media screen and (max-width: 576px) {
         .logo-home {
-            @apply h-32 -translate-x-12 -translate-y-5;
+            @apply h-[8rem];
         }
     }
 </style>

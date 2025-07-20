@@ -10,24 +10,20 @@ const routes: Route[] = await getCategories();
 
 <footer class="content">
     <nav class="sections">
-        {routes.map((route) => (
-            <Link href={`/categorias/${route.slug}`} color="black">
-                {route.title}
-            </Link>
-        ))}
+        {
+            routes.map((route) => (
+                <Link href={`/${route.slug}`} color="black">
+                    {route.title}
+                </Link>
+            ))
+        }
     </nav>
     <Supporters className="home" />
 </footer>
 
 <style>
     .content {
-        @apply flex flex-col flex-wrap items-center justify-between gap-4 pb-4 bg-gradient-to-tr from-orange-400 to-orange-500 px-4 py-1;
-    }
-
-    @media (min-width: 992px) {
-        .content {
-            @apply fixed top-0 right-0 h-full;
-        }
+        @apply flex flex-col flex-wrap items-center justify-between gap-4 p-4 bg-gradient-to-tr from-orange-400 to-orange-500 w-[23rem] h-screen;
     }
 
     .icon {
@@ -35,6 +31,16 @@ const routes: Route[] = await getCategories();
     }
 
     .sections {
-        @apply flex flex-col items-center mt-10 gap-8;
+        @apply flex flex-col items-start mt-4 gap-5;
+    }
+
+    @media (max-width: 992px) {
+        .content {
+            @apply w-full relative;
+        }
+
+        .sections {
+            @apply items-center mb-10;
+        }
     }
 </style>

@@ -5,6 +5,13 @@ import Footer from '../components/home/Footer.astro';
 ---
 
 <Layout>
-    <Main />
-    <Footer />
+    <div class="content">
+        <Main />
+        <Footer />
+    </div>
 </Layout>
+<style>
+    .content {
+        @apply flex;
+    }
+</style>
