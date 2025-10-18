@@ -2,27 +2,34 @@
 const { src, alt = 'Imagem', caption = '' } = Astro.props;
 ---
 
-<figure class="figure">
-    <img src={src} class="image" alt={alt} />
-    {
-        caption && (
-            <figcaption class="caption">
-                {caption}
-            </figcaption>
-        )
-    }
-</figure>
+<div class="image-container">
+    <figure class="figure">
+        <img src={src} class="image" alt={alt} />
+        {
+            caption && (
+                <figcaption class="caption">
+                    {caption}
+                </figcaption>
+            )
+        }
+    </figure>
+</div>
+
 
 <style>
+    .image-container {
+    @apply flex justify-center items-center w-full;
+    }
+
     .figure {
-        @apply flex flex-col items-center gap-2;
+    @apply flex flex-col items-center gap-2 w-full md:w-3/4;
     }
 
     .image {
-        @apply rounded md:w-3/4 object-cover;
+    @apply rounded object-cover w-full;
     }
 
     .caption {
-        @apply text-sm text-zinc-400;
+    @apply text-sm text-zinc-400 self-start;
     }
 </style>
