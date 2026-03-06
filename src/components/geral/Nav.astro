@@ -23,15 +23,6 @@ type Route = {
                 Quem Somos
             </a>
         </li>
-        <li>
-            <a
-                class={`nav-link ${currentPath === '/amigos-e-parceiros' ? 'active' : ''}`}
-                href="/amigos-e-parceiros"
-            >
-                <img src={flor.src} alt="Flor" class="nav-icon" />
-                Amigos e Parceiros
-            </a>
-        </li>
         {
             routes.slice(0, 5).map(({ slug, title }: Route) => (
                 <>
