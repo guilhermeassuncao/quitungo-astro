@@ -19,7 +19,7 @@ import Gallery from '../components/Gallery.astro';
 const paginaResponse = await getPageQuemSomos();
 const pagina = paginaResponse?.Conteudo ? paginaResponse : { Conteudo: [] };
 
-const tituloPagina = `Quitungo | Quem Somos`;
+const tituloPagina = `Quitungo | Amigos e Parceiros`;
 ---
 
 <Layout title={tituloPagina}>
@@ -28,7 +28,7 @@ const tituloPagina = `Quitungo | Quem Somos`;
         <Section>
             <Card>
                 <CardGridPaginas>
-                    <TitleMain titulo="Quem Somos" />
+                    <TitleMain titulo="Amigos e Parceiros" />
 
                     {
                         pagina.Conteudo.map((item: any) => {
