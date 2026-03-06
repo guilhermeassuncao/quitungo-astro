@@ -1,5 +1,6 @@
 export const routes = [
   { slug: "quem-somos", title: "Quem Somos", description: "" },
+  { slug: "amigos-e-parceiros", title: "Amigos e Parceiros", description: "" },
   { slug: "trabalhos-academicos", title: "Trabalhos Acadêmicos", description: "Pesquisas e publicações" },
   { slug: "trabalhos-tecnicos", title: "Trabalhos Técnicos", description: "Estudos e projetos realizados" },
   { slug: "cartografias", title: "Cartografias", description: "Mapas e outras representações geográficas" },

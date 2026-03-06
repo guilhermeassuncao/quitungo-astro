@@ -6,7 +6,10 @@ import Link from '../../components/home/Link.astro';
 
 <main class="content">
     <Logo className="home"/>
-    <Link href="/quem-somos" color="white">Quem somos?</Link>
+    <div class="links">
+        <Link href="/quem-somos" color="white">Quem somos?</Link>
+        <Link href="/amigos-e-parceiros" color="white">Amigos e Parceiros</Link>
+    </div>
 </main>
 
 <style>
@@ -14,4 +17,12 @@ import Link from '../../components/home/Link.astro';
         @apply flex flex-col items-start min-h-screen w-full bg-cover;
         background-image: url('/background/background-index-2.png');
     } 
+
+    .links {
+        @apply flex flex-col gap-4;
+    }
+
+    .links :global(a:first-child) {
+        @apply mt-28;
+    }
 </style>
