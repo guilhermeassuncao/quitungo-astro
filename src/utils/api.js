@@ -59,3 +59,20 @@ export async function getPageQuemSomos() {
         return [];
     }
 }
+
+export async function getPageAmigosParceiros() {
+    try {
+        const uri = `/amigos?populate=Conteudo.Imagem&populate=Conteudo.Video&populate=Conteudo.Documento&populate=Conteudo.Galeria.Imagem&populate=Conteudo.Audio&populate=Conteudo.Imagem.Imagem`;
+
+        const { data } = await axios.get(`${BASE_URL}${uri}`, {
+            headers: {
+                Authorization: `Bearer ${STRAPI_TOKEN}`,
+            },
+        });
+
+        return data.data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}

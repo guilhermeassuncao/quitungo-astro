@@ -1,5 +1,5 @@
 ---
-import { getPageQuemSomos } from '../utils/api.js';
+import { getPageAmigosParceiros } from '../utils/api.js';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/geral/Header.astro';
 import Footer from '../components/geral/Footer.astro';
@@ -16,7 +16,7 @@ import Media from '../components/Media.astro';
 import Document from '../components/Document.astro';
 import Gallery from '../components/Gallery.astro';
 
-const paginaResponse = await getPageQuemSomos();
+const paginaResponse = await getPageAmigosParceiros();
 const pagina = paginaResponse?.Conteudo ? paginaResponse : { Conteudo: [] };
 
 const tituloPagina = `Quitungo | Amigos e Parceiros`;
