@@ -1,5 +1,10 @@
 ---
 const { categoria, pagina } = Astro.props;
+const coverImageUrl = pagina.Capa?.Imagem?.url;
+const coverImageAlt = pagina.Capa?.Autor || pagina.Dados?.Titulo || '';
+const description = pagina.Dados?.Descricao || '';
+const truncatedDescription =
+  description.length > 140 ? `${description.slice(0, 140).trimEnd()}...` : description;
 
 const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
   day: '2-digit',
@@ -8,10 +13,12 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
 });
 ---
 
-<div class="content group">
+<a href={`/${categoria}/${pagina.id}`} class="content group">
     <div class="wrapper">
-        <div class="image-container">
-            <img src={pagina.Capa.Imagem.url} alt={pagina.Capa.Autor} class="image" />
+        <div class={`image-container ${!coverImageUrl ? 'image-container-empty' : ''}`}>
+            {coverImageUrl && (
+                <img src={coverImageUrl} alt={coverImageAlt} class="image" />
+            )}
         </div>
         <div class="body">
             <header class="header">
@@ -35,10 +42,10 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
 
             </header>
             <p class="text">
-                {pagina.Dados.Descricao}
+                {truncatedDescription}
             </p>
             <div class="link">
-                <a href={`/${categoria}/${pagina.id}`} class="link-container">
+                <div class="link-container">
                     Leia mais
                     <svg
                         viewBox="0 0 16 16"
@@ -54,23 +61,27 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
                             class="fill-current"
                             stroke-width="0.6667"></path>
                     </svg>
-                </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</a>
 
 <style>
     .content {
-        @apply cursor-pointer;
+        @apply cursor-pointer h-full block no-underline;
     }
 
     .wrapper {
-        @apply relative bg-gray-100 rounded-lg overflow-hidden shadow-md border;
+        @apply relative bg-gray-100 rounded-lg overflow-hidden shadow-md border h-full flex flex-col;
     }
 
     .image-container {
-        @apply relative h-48 overflow-hidden;
+        @apply relative h-48 overflow-hidden shrink-0;
+    }
+
+    .image-container-empty {
+        @apply bg-gray-200;
     }
 
     .image {
@@ -78,7 +89,7 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
     }
 
     .body {
-        @apply p-6;
+        @apply p-6 flex flex-col flex-1;
     }
 
     .header {
@@ -98,7 +109,7 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
     }
 
     .text {
-        @apply text-gray-400 leading-relaxed;
+        @apply text-gray-400 leading-relaxed flex-1;
     }
 
     .arrow {
