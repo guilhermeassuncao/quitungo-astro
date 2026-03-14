@@ -28,7 +28,7 @@ export async function getCategories() {
 
 export async function getPagesByCategory(categoryName) {
     try {
-        const uri = `/paginas?populate=categorias&filters[categorias][Nome][$eq]=${encodeURIComponent(categoryName)}&populate=Capa.Imagem&populate=Conteudo.Imagem&populate=Conteudo.Video&populate=Conteudo.Documento&populate=Conteudo.Galeria.Imagem&populate=Conteudo.Audio&populate=Conteudo.Imagem.Imagem&populate=categorias&populate=Dados`;
+        const uri = `/paginas?sort[0]=publishedAt:desc&populate=categorias&filters[categorias][Nome][$eq]=${encodeURIComponent(categoryName)}&populate=Capa.Imagem&populate=Conteudo.Imagem&populate=Conteudo.Video&populate=Conteudo.Documento&populate=Conteudo.Galeria.Imagem&populate=Conteudo.Audio&populate=Conteudo.Imagem.Imagem&populate=categorias&populate=Dados`;
 
         const { data } = await axios.get(`${BASE_URL}${uri}`, {
             headers: {

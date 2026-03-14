@@ -93,12 +93,18 @@ const tituloPagina = `Quitungo | Amigos e Parceiros`;
                                 case 'pagina.video':
                                     return <Video src={item.Video.url} />;
                                 case 'pagina.audio':
-                                    return <Audio src={item.Audio.url} />;
+                                    return (
+                                        <Audio
+                                            src={item.Audio.url}
+                                            author={item.Autor}
+                                        />
+                                    );
                                 case 'pagina.documento':
                                     return (
                                         <Document
                                             href={item.Documento.url}
                                             name={item.Nome}
+                                            author={item.Autor}
                                         />
                                     );
                                 case 'pagina.youtube':

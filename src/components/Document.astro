@@ -1,19 +1,30 @@
 ---
-const { href, name } = Astro.props;
+const { href, name, author = '' } = Astro.props;
 ---
 
 <div class="content">
-    <span class="text">{name}</span>
+    <div class="info">
+        <span class="text">{name}</span>
+        {author && <p class="author">{author}</p>}
+    </div>
     <a href={href} class="link" download target="_blank"> Baixar </a>
 </div>
 
 <style>
     .content {
-        @apply flex items-center justify-between;
+        @apply flex items-center justify-between my-8;
+    }
+
+    .info {
+        @apply flex flex-col gap-1;
     }
 
     .text {
         @apply leading-relaxed;
+    }
+
+    .author {
+        @apply text-sm text-zinc-400;
     }
 
     .link {

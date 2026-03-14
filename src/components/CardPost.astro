@@ -77,7 +77,7 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
     }
 
     .image-container {
-        @apply relative h-48 overflow-hidden shrink-0;
+        @apply relative h-40 overflow-hidden shrink-0;
     }
 
     .image-container-empty {
@@ -89,15 +89,19 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
     }
 
     .body {
-        @apply p-6 flex flex-col flex-1;
+        @apply p-5 flex flex-col flex-1;
     }
 
     .header {
-        @apply flex flex-col gap-4 mb-4;
+        @apply flex flex-col gap-3 mb-3;
     }
 
     .title {
-        @apply text-lg font-semibold text-zinc-800 group-hover:text-orange-500 transition-colors;
+        @apply text-base font-semibold text-zinc-800 group-hover:text-orange-500 transition-colors;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .date {
@@ -109,7 +113,11 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
     }
 
     .text {
-        @apply text-gray-400 leading-relaxed flex-1;
+        @apply text-sm text-gray-400 leading-relaxed flex-1;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .arrow {
@@ -117,7 +125,7 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
     }
 
     .link {
-        @apply mt-6 flex items-center text-orange-500 text-sm font-medium;
+        @apply mt-3 flex items-center text-orange-500 text-sm font-medium;
     }
 
     .link-container {
