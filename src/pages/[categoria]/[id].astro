@@ -56,7 +56,6 @@ const tituloPagina = `Quitungo | ${route.title} - ${pagina.Titulo}`;
                         <a class="categoria" href={`/${route.slug}`}>{route.title}</a>
                         <h1 class="titulo">{pagina.Titulo}</h1>
                         {autoriaLinha && <p class="autoria">{autoriaLinha}</p>}
-                        {pagina.Descricao && <p class="resumo">{pagina.Descricao}</p>}
                         <p class="data">Publicado em {dataPublicacao}</p>
                     </header>
 
@@ -96,10 +95,6 @@ const tituloPagina = `Quitungo | ${route.title} - ${pagina.Titulo}`;
 
     .autoria {
         @apply text-base font-semibold text-zinc-600;
-    }
-
-    .resumo {
-        @apply text-lg text-zinc-600 leading-relaxed font-serif;
     }
 
     .data {

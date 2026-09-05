@@ -1,10 +1,10 @@
 ---
+import { resumoDoPost } from '../utils/resumo.js';
+
 const { categoria, pagina } = Astro.props;
 const coverImageUrl = pagina.Capa?.Imagem?.url;
 const coverImageAlt = pagina.Capa?.Autor || pagina.Titulo || '';
-const description = pagina.Descricao || '';
-const truncatedDescription =
-  description.length > 140 ? `${description.slice(0, 140).trimEnd()}...` : description;
+const truncatedDescription = resumoDoPost(pagina);
 
 const formattedDate = new Date(pagina.publishedAt || pagina.createdAt).toLocaleDateString('pt-BR', {
   day: '2-digit',
