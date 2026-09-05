@@ -16,7 +16,7 @@ type Route = {
     <ul class="nav-list">
         <li>
             <a
-                class={`nav-link ${currentPath === '/' ? 'active' : ''}`}
+                class={`nav-link ${currentPath.startsWith('/quem-somos') ? 'active' : ''}`}
                 href="/quem-somos"
             >
                 <img src={flor.src} alt="Flor" class="nav-icon" />
@@ -28,7 +28,7 @@ type Route = {
                 <>
                     <li>
                         <a
-                            class={`nav-link ${currentPath === `/${slug}` ? 'active' : ''}`}
+                            class={`nav-link ${currentPath.startsWith(`/${slug}`) ? 'active' : ''}`}
                             href={`/${slug}`}
                         >
                             <img src={flor.src} alt="Flor" class="nav-icon" />
@@ -46,7 +46,7 @@ type Route = {
                 <>
                     <li>
                         <a
-                            class={`nav-link ${currentPath === `/${slug}` ? 'active' : ''}`}
+                            class={`nav-link ${currentPath.startsWith(`/${slug}`) ? 'active' : ''}`}
                             href={`/${slug}`}
                         >
                             <img src={flor.src} alt="Flor" class="nav-icon" />

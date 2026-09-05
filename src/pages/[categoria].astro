@@ -19,22 +19,17 @@ type Route = {
 
 export async function getStaticPaths() {
     const routes = await getCategories();
-    return routes.map(({ slug }: Route) => ({
-        params: { categoria: slug },
-        props: { routes },
+    return routes.map((route: Route) => ({
+        params: { categoria: route.slug },
+        props: { route },
     }));
 }
 
-const { categoria } = Astro.params;
-const { routes }: { routes: Route[] } = Astro.props;
+const { route }: { route: Route } = Astro.props;
 
-const categoriaSelecionada = routes.find(
-    (route: Route) => route.slug === categoria
-);
+const paginas = await getPagesByCategory(route.slug);
 
-const paginas = await getPagesByCategory(categoriaSelecionada?.title);
-
-const tituloPagina = `Quitungo | ${categoriaSelecionada?.title}`;
+const tituloPagina = `Quitungo | ${route.title}`;
 ---
 
 <Layout title={tituloPagina}>
@@ -42,19 +37,12 @@ const tituloPagina = `Quitungo | ${categoriaSelecionada?.title}`;
         <Header />
         <Section>
             <Card>
-                <TitleMain
-                    titulo={categoriaSelecionada?.title}
-                    texto={categoriaSelecionada?.description}
-                />
+                <TitleMain titulo={route.title} texto={route.description} />
                 {
                     paginas.length > 0 ? (
                         <CardGridCategorias>
                             {paginas.map((pagina: any) => (
-                                <CardPost
-                                    key={pagina.id}
-                                    categoria={categoriaSelecionada?.slug}
-                                    pagina={pagina}
-                                />
+                                <CardPost categoria={route.slug} pagina={pagina} />
                             ))}
                         </CardGridCategorias>
                     ) : (

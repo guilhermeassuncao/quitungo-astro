@@ -6,14 +6,8 @@ import Footer from '../../components/geral/Footer.astro';
 import Section from '../../components/geral/Section.astro';
 import Main from '../../components/geral/Main.astro';
 import Card from '../../components/Card.astro';
-import Title from '../../components/Title.astro';
-import Image from '../../components/Image.astro';
-import Video from '../../components/Video.astro';
-import Audio from '../../components/Audio.astro';
-import Media from '../../components/Media.astro';
-import Document from '../../components/Document.astro';
-import Gallery from '../../components/Gallery.astro';
 import CardGridPaginas from '../../components/CardGridPaginas.astro';
+import Blocos from '../../components/Blocos.astro';
 
 type Route = {
     slug: string;
@@ -21,45 +15,35 @@ type Route = {
     description?: string;
 };
 
-type Page = {
-    id: number;
-};
-
 export async function getStaticPaths() {
     const routes = await getCategories();
+    const paths = [];
 
-    const paths: {
-        params: { categoria: string; id: string };
-        props: { routes: any };
-    }[] = [];
-
+    // Uma requisição por categoria; cada post recebe seus próprios dados
+    // como props, em vez de a página refazer a busca da categoria inteira.
     for (const route of routes) {
-        const pages: { id: number }[] = await getPagesByCategory(route.title);
-
-        pages.forEach((page) => {
+        const paginas = await getPagesByCategory(route.slug);
+        for (const pagina of paginas) {
             paths.push({
-                params: { categoria: route.slug, id: String(page.id) },
-                props: { routes },
+                params: { categoria: route.slug, id: String(pagina.id) },
+                props: { route, pagina },
             });
-        });
+        }
     }
 
     return paths;
 }
 
-const { categoria, id } = Astro.params;
-const { routes }: { routes: Route[] } = Astro.props;
+const { route, pagina }: { route: Route; pagina: any } = Astro.props;
 
-const categoriaSelecionada = routes.find(
-    (route: Route) => route.slug === categoria
+const dataPublicacao = new Date(pagina.publishedAt || pagina.createdAt).toLocaleDateString(
+    'pt-BR',
+    { day: '2-digit', month: 'long', year: 'numeric' }
 );
 
-const paginas = await getPagesByCategory(categoriaSelecionada?.title);
-const paginaSelecionada = paginas.find(
-    (pagina: Page) => String(pagina.id) === id
-);
+const autoriaLinha = [pagina.Autoria, pagina.Ano].filter(Boolean).join(', ');
 
-const tituloPagina = `Quitungo | ${categoriaSelecionada?.title} - ${paginaSelecionada.Dados.Titulo}`;
+const tituloPagina = `Quitungo | ${route.title} - ${pagina.Titulo}`;
 ---
 
 <Layout title={tituloPagina}>
@@ -68,102 +52,65 @@ const tituloPagina = `Quitungo | ${categoriaSelecionada?.title} - ${paginaSeleci
         <Section>
             <Card>
                 <CardGridPaginas>
+                    <header class="cabecalho">
+                        <a class="categoria" href={`/${route.slug}`}>{route.title}</a>
+                        <h1 class="titulo">{pagina.Titulo}</h1>
+                        {autoriaLinha && <p class="autoria">{autoriaLinha}</p>}
+                        {pagina.Descricao && <p class="resumo">{pagina.Descricao}</p>}
+                        <p class="data">Publicado em {dataPublicacao}</p>
+                    </header>
+
+                    <Blocos
+                        blocos={pagina.Conteudo}
+                        nomePadrao={pagina.Titulo}
+                        autorPadrao={pagina.Autoria}
+                    />
+
                     {
-                        paginaSelecionada.Conteudo.map((item: any) => {
-                            switch (item.__component) {
-                                case 'pagina.titulo':
-                                    switch (item.Tamanho) {
-                                        case 'h1':
-                                            return (
-                                                <Title tamanho="h1">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                        case 'h2':
-                                            return (
-                                                <Title tamanho="h2">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                        case 'h3':
-                                            return (
-                                                <Title tamanho="h3">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                        case 'h4':
-                                            return (
-                                                <Title tamanho="h4">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                    }
-                                case 'pagina.texto':
-                                    return <div set:html={item.Texto} />;
-                                case 'pagina.imagem':
-                                    return (
-                                        <Image
-                                            src={item.Imagem.url}
-                                            alt={item.Autor}
-                                            caption={item.Autor}
-                                        />
-                                    );
-                                case 'pagina.midia':
-                                    return (
-                                        <Media
-                                            src={item.Imagem.Imagem.url}
-                                            alt={item.Imagem.Autor}
-                                            caption={item.Imagem.Autor}
-                                            texto={item.Texto}
-                                        />
-                                    );
-                                case 'pagina.galeria':
-                                    return (
-                                        <Gallery
-                                            images={item.Galeria.map(
-                                                (image: any) => ({
-                                                    url: image.Imagem.url,
-                                                    alt: image.Autor,
-                                                })
-                                            )}
-                                        />
-                                    );
-                                case 'pagina.video':
-                                    return <Video src={item.Video.url} />;
-                                case 'pagina.audio':
-                                    return (
-                                        <Audio
-                                            src={item.Audio.url}
-                                            author={item.Autor}
-                                        />
-                                    );
-                                case 'pagina.documento':
-                                    return (
-                                        <Document
-                                            href={item.Documento.url}
-                                            name={item.Nome}
-                                            author={item.Autor}
-                                        />
-                                    );
-                                case 'pagina.youtube':
-                                    const videoId = item.Url.split('v=')[1];
-                                    return (
-                                        <iframe
-                                            width="100%"
-                                            height="600"
-                                            src={`https://www.youtube.com/embed/${videoId}`}
-                                            title="Vídeo do YouTube"
-                                            allowfullscreen
-                                        />
-                                    );
-                                default:
-                                    return null;
-                            }
-                        })
+                        pagina.Referencia && (
+                            <footer class="referencia">
+                                <span class="referencia-rotulo">Referência</span>
+                                <p>{pagina.Referencia}</p>
+                            </footer>
+                        )
                     }
                 </CardGridPaginas>
             </Card>
         </Section>
+        <Footer />
     </Main>
 </Layout>
-<Footer />
+
+<style>
+    .cabecalho {
+        @apply flex flex-col gap-2 mb-6 pb-6 border-b border-zinc-200;
+    }
+
+    .categoria {
+        @apply text-sm font-semibold uppercase tracking-wide text-orange-500 hover:text-orange-600 transition;
+    }
+
+    .titulo {
+        @apply text-2xl md:text-3xl font-black text-zinc-800 leading-tight;
+    }
+
+    .autoria {
+        @apply text-base font-semibold text-zinc-600;
+    }
+
+    .resumo {
+        @apply text-lg text-zinc-600 leading-relaxed font-serif;
+    }
+
+    .data {
+        @apply text-sm text-zinc-400;
+    }
+
+    .referencia {
+        @apply mt-6 pt-6 border-t border-zinc-200 text-sm text-zinc-500 leading-relaxed;
+    }
+
+    .referencia-rotulo {
+        @apply block text-xs font-semibold uppercase tracking-wide text-zinc-400 mb-1;
+    }
+</style>

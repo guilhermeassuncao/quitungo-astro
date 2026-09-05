@@ -1,0 +1,122 @@
+---
+/**
+ * Renderiza a dynamic zone "Conteudo" do Strapi. Usado pela página do post,
+ * por Quem Somos e por Amigos e Parceiros, para que os blocos se comportem
+ * igual em todo o site.
+ *
+ * Props:
+ *   blocos        array vindo de Conteudo
+ *   nomePadrao    usado como nome do Documento quando o campo Nome está vazio
+ *   autorPadrao   usado como autor do Documento quando o campo Autor está vazio
+ */
+import Title from './Title.astro';
+import Image from './Image.astro';
+import Video from './Video.astro';
+import Audio from './Audio.astro';
+import Media from './Media.astro';
+import Document from './Document.astro';
+import Gallery from './Gallery.astro';
+
+const { blocos = [], nomePadrao = '', autorPadrao = '' } = Astro.props;
+
+const NIVEIS = ['h1', 'h2', 'h3', 'h4'];
+
+/** Aceita youtube.com/watch?v=, youtu.be/, /shorts/, /embed/, /live/ e ignora parâmetros extras. */
+function idDoYoutube(url: string | undefined): string | null {
+    if (!url) return null;
+    const m = url.match(
+        /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]{11})/
+    );
+    return m ? m[1] : null;
+}
+---
+
+{
+    blocos.map((item: any) => {
+        switch (item.__component) {
+            case 'pagina.titulo':
+                return (
+                    <Title tamanho={NIVEIS.includes(item.Tamanho) ? item.Tamanho : 'h2'}>
+                        {item.Nome}
+                    </Title>
+                );
+
+            case 'pagina.texto':
+                return <div class="texto" set:html={item.Texto} />;
+
+            case 'pagina.imagem':
+                return item.Imagem?.url ? (
+                    <Image src={item.Imagem.url} alt={item.Autor || ''} caption={item.Autor} />
+                ) : null;
+
+            case 'pagina.midia':
+                return item.Imagem?.Imagem?.url ? (
+                    <Media
+                        src={item.Imagem.Imagem.url}
+                        alt={item.Imagem.Autor || ''}
+                        caption={item.Imagem.Autor}
+                        texto={item.Texto}
+                    />
+                ) : (
+                    <div class="texto" set:html={item.Texto} />
+                );
+
+            case 'pagina.galeria':
+                return (
+                    <Gallery
+                        images={(item.Galeria || [])
+                            .filter((g: any) => g.Imagem?.url)
+                            .map((g: any) => ({ url: g.Imagem.url, alt: g.Autor || '' }))}
+                    />
+                );
+
+            case 'pagina.video':
+                return item.Video?.url ? <Video src={item.Video.url} /> : null;
+
+            case 'pagina.audio':
+                return item.Audio?.url ? <Audio src={item.Audio.url} author={item.Autor} /> : null;
+
+            case 'pagina.documento':
+                return item.Documento?.url ? (
+                    <Document
+                        href={item.Documento.url}
+                        name={item.Nome?.trim() || nomePadrao || item.Documento.name}
+                        author={item.Autor || autorPadrao}
+                    />
+                ) : null;
+
+            case 'pagina.youtube': {
+                const id = idDoYoutube(item.Url);
+                return id ? (
+                    <div class="youtube">
+                        <iframe
+                            src={`https://www.youtube-nocookie.com/embed/${id}`}
+                            title="Vídeo do YouTube"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        />
+                    </div>
+                ) : null;
+            }
+
+            default:
+                return null;
+        }
+    })
+}
+
+<style>
+    .texto {
+        @apply leading-relaxed;
+    }
+
+    .youtube {
+        @apply relative w-full my-8 rounded overflow-hidden;
+        aspect-ratio: 16 / 9;
+    }
+
+    .youtube iframe {
+        @apply absolute inset-0 w-full h-full border-0;
+    }
+</style>

@@ -1,12 +1,12 @@
 ---
 const { categoria, pagina } = Astro.props;
 const coverImageUrl = pagina.Capa?.Imagem?.url;
-const coverImageAlt = pagina.Capa?.Autor || pagina.Dados?.Titulo || '';
-const description = pagina.Dados?.Descricao || '';
+const coverImageAlt = pagina.Capa?.Autor || pagina.Titulo || '';
+const description = pagina.Descricao || '';
 const truncatedDescription =
   description.length > 140 ? `${description.slice(0, 140).trimEnd()}...` : description;
 
-const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
+const formattedDate = new Date(pagina.publishedAt || pagina.createdAt).toLocaleDateString('pt-BR', {
   day: '2-digit',
   month: '2-digit',
   year: 'numeric',
@@ -37,9 +37,9 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
                     {formattedDate}
                 </div>
                 <h2 class="title">
-                    {pagina.Dados.Titulo}
+                    {pagina.Titulo}
                 </h2>
-
+                {pagina.Autoria && <p class="autoria">{pagina.Autoria}</p>}
             </header>
             <p class="text">
                 {truncatedDescription}
@@ -102,6 +102,10 @@ const formattedDate = new Date(pagina.createdAt).toLocaleDateString('pt-BR', {
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+
+    .autoria {
+        @apply text-xs font-medium text-zinc-500 -mt-2;
     }
 
     .date {

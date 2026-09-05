@@ -8,121 +8,20 @@ import Main from '../components/geral/Main.astro';
 import Card from '../components/Card.astro';
 import CardGridPaginas from '../components/CardGridPaginas.astro';
 import TitleMain from '../components/TitleMain.astro';
-import Title from '../components/Title.astro';
-import Image from '../components/Image.astro';
-import Video from '../components/Video.astro';
-import Audio from '../components/Audio.astro';
-import Media from '../components/Media.astro';
-import Document from '../components/Document.astro';
-import Gallery from '../components/Gallery.astro';
+import Blocos from '../components/Blocos.astro';
 
-const paginaResponse = await getPageQuemSomos();
-const pagina = paginaResponse?.Conteudo ? paginaResponse : { Conteudo: [] };
-
-const tituloPagina = `Quitungo | Quem Somos`;
+const pagina = await getPageQuemSomos();
+const blocos = pagina?.Conteudo ?? [];
 ---
 
-<Layout title={tituloPagina}>
+<Layout title="Quitungo | Quem Somos">
     <Main>
         <Header />
         <Section>
             <Card>
                 <CardGridPaginas>
                     <TitleMain titulo="Quem Somos" />
-
-                    {
-                        pagina.Conteudo.map((item: any) => {
-                            switch (item.__component) {
-                                case 'pagina.titulo':
-                                    switch (item.Tamanho) {
-                                        case 'h1':
-                                            return (
-                                                <Title tamanho="h1">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                        case 'h2':
-                                            return (
-                                                <Title tamanho="h2">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                        case 'h3':
-                                            return (
-                                                <Title tamanho="h3">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                        case 'h4':
-                                            return (
-                                                <Title tamanho="h4">
-                                                    {item.Nome}
-                                                </Title>
-                                            );
-                                    }
-                                case 'pagina.texto':
-                                    return <div set:html={item.Texto} />;
-                                case 'pagina.imagem':
-                                    return (
-                                        <Image
-                                            src={item.Imagem.url}
-                                            alt={item.Autor}
-                                            caption={item.Autor}
-                                        />
-                                    );
-                                case 'pagina.midia':
-                                    return (
-                                        <Media
-                                            src={item.Imagem.Imagem.url}
-                                            alt={item.Imagem.Autor}
-                                            caption={item.Imagem.Autor}
-                                            texto={item.Texto}
-                                        />
-                                    );
-                                case 'pagina.galeria':
-                                    return (
-                                        <Gallery
-                                            images={item.Galeria.map(
-                                                (image: any) => ({
-                                                    url: image.Imagem.url,
-                                                    alt: image.Autor,
-                                                })
-                                            )}
-                                        />
-                                    );
-                                case 'pagina.video':
-                                    return <Video src={item.Video.url} />;
-                                case 'pagina.audio':
-                                    return (
-                                        <Audio
-                                            src={item.Audio.url}
-                                            author={item.Autor}
-                                        />
-                                    );
-                                case 'pagina.documento':
-                                    return (
-                                        <Document
-                                            href={item.Documento.url}
-                                            name={item.Nome}
-                                            author={item.Autor}
-                                        />
-                                    );
-                                case 'pagina.youtube':
-                                    const videoId = item.Url.split('v=')[1];
-                                    return (
-                                        <iframe
-                                            width="100%"
-                                            height="600"
-                                            src={`https://www.youtube.com/embed/${videoId}`}
-                                            title="Vídeo do YouTube"
-                                            allowfullscreen
-                                        />
-                                    );
-                                default:
-                                    return null;
-                            }
-                        })
-                    }
+                    <Blocos blocos={blocos} nomePadrao="Quem Somos" />
                 </CardGridPaginas>
             </Card>
         </Section>

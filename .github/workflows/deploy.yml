@@ -1,9 +1,22 @@
 name: Deploy to GitHub Pages
 
 on:
+  # Mudança no código do site
   push:
     branches: [main]
+  # Disparo manual pela aba Actions
   workflow_dispatch:
+  # Disparo automático do Strapi quando o conteúdo muda (ver src/index.ts na API)
+  repository_dispatch:
+    types: [strapi-content-updated]
+  # Rede de segurança: reconstrói todo dia às 03:00 UTC mesmo sem gatilho
+  schedule:
+    - cron: '0 3 * * *'
+
+# Builds em sequência não se atropelam; o mais novo espera o anterior.
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 env:
   STRAPI_URL: ${{ secrets.STRAPI_URL }}
@@ -18,16 +31,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Install, build, and upload your site output
-        uses: withastro/action@v5
-
-      - name: Verificar variáveis de ambiente
+      - name: Acordar a API (Render free hiberna; a primeira resposta demora)
         run: |
-          echo "STRAPI_URL=$STRAPI_URL"
-          echo "STRAPI_TOKEN=$STRAPI_TOKEN"
+          for i in $(seq 1 12); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$STRAPI_URL/categorias" -H "Authorization: Bearer $STRAPI_TOKEN" || true)
+            echo "tentativa $i: HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 10
+          done
+          echo "API não respondeu 200 a tempo" >&2
+          exit 1
+
+      - name: Instalar, buildar e enviar o site
+        uses: withastro/action@v5
 
   deploy:
     needs: build
