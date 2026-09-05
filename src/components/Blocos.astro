@@ -82,6 +82,8 @@ function idDoYoutube(url: string | undefined): string | null {
                         href={item.Documento.url}
                         name={item.Nome?.trim() || nomePadrao || item.Documento.name}
                         author={item.Autor || autorPadrao}
+                        ext={item.Documento.ext}
+                        size={item.Documento.size}
                     />
                 ) : null;
 

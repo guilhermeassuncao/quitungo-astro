@@ -1,33 +1,89 @@
 ---
-const { href, name, author = '' } = Astro.props;
+/**
+ * Cartão de arquivo para download.
+ *   href    URL do arquivo
+ *   name    nome exibido
+ *   author  autor (opcional)
+ *   ext     extensão, ex. ".pdf" (opcional)
+ *   size    tamanho em KB, como vem do Strapi (opcional)
+ */
+const { href, name, author = '', ext = '', size = 0 } = Astro.props;
+
+const tipo = (ext || '').replace('.', '').toUpperCase() || 'ARQUIVO';
+const tamanho =
+    size >= 1024 ? `${(size / 1024).toFixed(1).replace('.', ',')} MB` : size > 0 ? `${Math.round(size)} KB` : '';
+const meta = [tipo, tamanho].filter(Boolean).join(' · ');
 ---
 
-<div class="content">
-    <div class="info">
-        <span class="text">{name}</span>
-        {author && <p class="author">{author}</p>}
+<a href={href} class="card group" download target="_blank" rel="noopener">
+    <div class="icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+            <path d="M14 3v5h5" />
+            <path d="M9 13h6M9 17h6" />
+        </svg>
     </div>
-    <a href={href} class="link" download target="_blank"> Baixar </a>
-</div>
+    <div class="info">
+        <span class="meta">{meta}</span>
+        <span class="nome">{name}</span>
+        {author && <span class="autor">{author}</span>}
+    </div>
+    <span class="botao">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12" />
+            <path d="m7 10 5 5 5-5" />
+            <path d="M5 21h14" />
+        </svg>
+        Baixar
+    </span>
+</a>
 
 <style>
-    .content {
-        @apply flex items-center justify-between my-8;
+    .card {
+        @apply flex items-center gap-4 my-8 p-4 rounded-lg border border-zinc-200 bg-white no-underline transition;
+        @apply hover:border-orange-300 hover:shadow-md;
+    }
+
+    .icone {
+        @apply shrink-0 w-12 h-12 rounded-md bg-orange-50 text-orange-500 flex items-center justify-center;
+    }
+
+    .icone svg {
+        @apply w-7 h-7;
     }
 
     .info {
-        @apply flex flex-col gap-1;
+        @apply flex flex-col gap-0.5 min-w-0 flex-1;
     }
 
-    .text {
-        @apply leading-relaxed;
+    .meta {
+        @apply text-xs font-semibold uppercase tracking-wide text-zinc-400;
     }
 
-    .author {
-        @apply text-sm text-zinc-400;
+    .nome {
+        @apply text-zinc-800 font-medium leading-snug group-hover:text-orange-600 transition-colors;
     }
 
-    .link {
-        @apply bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition cursor-pointer;
+    .autor {
+        @apply text-sm text-zinc-500;
+    }
+
+    .botao {
+        @apply shrink-0 inline-flex items-center gap-2 bg-orange-500 text-white text-sm font-semibold px-4 py-2 rounded;
+        @apply group-hover:bg-orange-600 transition;
+    }
+
+    .botao svg {
+        @apply w-4 h-4;
+    }
+
+    @media (max-width: 640px) {
+        .card {
+            @apply flex-wrap;
+        }
+
+        .botao {
+            @apply w-full justify-center;
+        }
     }
 </style>
