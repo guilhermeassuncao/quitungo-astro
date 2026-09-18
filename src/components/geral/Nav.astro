@@ -1,6 +1,7 @@
 ---
 import { getCategories } from '../../utils/api.js';
 import flor from '../../images/icon/flor.svg';
+import { url } from '../../utils/url.js';
 
 const routes = await getCategories(); 
 
@@ -17,7 +18,7 @@ type Route = {
         <li>
             <a
                 class={`nav-link ${currentPath.startsWith('/quem-somos') ? 'active' : ''}`}
-                href="/quem-somos"
+                href={url("/quem-somos")}
             >
                 <img src={flor.src} alt="Flor" class="nav-icon" />
                 Quem Somos
@@ -28,8 +29,8 @@ type Route = {
                 <>
                     <li>
                         <a
-                            class={`nav-link ${currentPath.startsWith(`/${slug}`) ? 'active' : ''}`}
-                            href={`/${slug}`}
+                            class={`nav-link ${currentPath.startsWith(url(`/${slug}`)) ? 'active' : ''}`}
+                            href={url(`/${slug}`)}
                         >
                             <img src={flor.src} alt="Flor" class="nav-icon" />
                             {title}
@@ -46,8 +47,8 @@ type Route = {
                 <>
                     <li>
                         <a
-                            class={`nav-link ${currentPath.startsWith(`/${slug}`) ? 'active' : ''}`}
-                            href={`/${slug}`}
+                            class={`nav-link ${currentPath.startsWith(url(`/${slug}`)) ? 'active' : ''}`}
+                            href={url(`/${slug}`)}
                         >
                             <img src={flor.src} alt="Flor" class="nav-icon" />
                             {title}

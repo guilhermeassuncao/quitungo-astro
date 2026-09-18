@@ -8,6 +8,7 @@ import Main from '../../components/geral/Main.astro';
 import Card from '../../components/Card.astro';
 import CardGridPaginas from '../../components/CardGridPaginas.astro';
 import Blocos from '../../components/Blocos.astro';
+import { url } from '../../utils/url.js';
 
 type Route = {
     slug: string;
@@ -53,7 +54,7 @@ const tituloPagina = `Quitungo | ${route.title} - ${pagina.Titulo}`;
             <Card>
                 <CardGridPaginas>
                     <header class="cabecalho">
-                        <a class="categoria" href={`/${route.slug}`}>{route.title}</a>
+                        <a class="categoria" href={url(`/${route.slug}`)}>{route.title}</a>
                         <h1 class="titulo">{pagina.Titulo}</h1>
                         {autoriaLinha && <p class="autoria">{autoriaLinha}</p>}
                         <p class="data">Publicado em {dataPublicacao}</p>

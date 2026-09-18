@@ -1,10 +1,13 @@
-<main class="main">
+---
+import { url } from '../../utils/url.js';
+---
+
+<main class="main" style={`background-image: url('${url('/background/background-geral.jpg')}')`}>
     <slot />
 </main>
 
 <style>
     .main {
         @apply flex flex-col bg-cover bg-center bg-no-repeat bg-fixed min-h-screen;
-        background-image: url('/background/background-geral.jpg');
     }
 </style>

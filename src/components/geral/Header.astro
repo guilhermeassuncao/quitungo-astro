@@ -1,11 +1,12 @@
 ---
 import Logo from '../../components/Logo.astro';
 import Nav from './Nav.astro';
+import { url } from '../../utils/url.js';
 ---
 
 <header class="content">
     <div class="container">
-        <a href="/">
+        <a href={url("/")}>
             <Logo className="header" />
         </a>
         <Nav />

@@ -1,5 +1,6 @@
 ---
 import { resumoDoPost } from '../utils/resumo.js';
+import { url } from '../utils/url.js';
 
 const { categoria, pagina } = Astro.props;
 const coverImageUrl = pagina.Capa?.Imagem?.url;
@@ -13,7 +14,7 @@ const formattedDate = new Date(pagina.publishedAt || pagina.createdAt).toLocaleD
 });
 ---
 
-<a href={`/${categoria}/${pagina.id}`} class="content group">
+<a href={url(`/${categoria}/${pagina.id}`)} class="content group">
     <div class="wrapper">
         <div class={`image-container ${!coverImageUrl ? 'image-container-empty' : ''}`}>
             {coverImageUrl && (

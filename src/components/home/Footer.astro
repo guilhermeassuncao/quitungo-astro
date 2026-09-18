@@ -2,6 +2,7 @@
 import { getCategories } from '../../utils/api.js';
 import Supporters from '../Supporters.astro';
 import Link from './Link.astro';
+import { url } from '../../utils/url.js';
 
 type Route = { slug: string; title: string };
 
@@ -12,7 +13,7 @@ const routes: Route[] = await getCategories();
     <nav class="sections">
         {
             routes.map((route) => (
-                <Link href={`/${route.slug}`} color="black">
+                <Link href={url(`/${route.slug}`)} color="black">
                     {route.title}
                 </Link>
             ))

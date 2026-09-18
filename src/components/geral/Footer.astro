@@ -2,6 +2,7 @@
 import Logo from '../../components/Logo.astro';
 import Supporters from '../Supporters.astro';
 import Social from './Social.astro';
+import { url } from '../../utils/url.js';
 
 const ano = new Date().getFullYear();
 ---
@@ -9,7 +10,7 @@ const ano = new Date().getFullYear();
 <footer class="content">
     <div class="container">
         <header class="header">
-            <a href="/"><Logo className="footer" /></a>
+            <a href={url("/")}><Logo className="footer" /></a>
             <Supporters className="geral" />
         </header>
 

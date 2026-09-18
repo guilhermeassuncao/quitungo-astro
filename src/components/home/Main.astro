@@ -1,22 +1,21 @@
 ---
 import Logo from '../../components/Logo.astro';
 import Link from '../../components/home/Link.astro';
-
+import { url } from '../../utils/url.js';
 ---
 
-<main class="content">
+<main class="content" style={`background-image: url('${url('/background/background-index-2.png')}')`}>
     <Logo className="home"/>
     <div class="links">
-        <Link href="/quem-somos" color="white">Quem somos?</Link>
-        <Link href="/amigos-e-parceiros" color="white">Amigos e Parceiros</Link>
+        <Link href={url("/quem-somos")} color="white">Quem somos?</Link>
+        <Link href={url("/amigos-e-parceiros")} color="white">Amigos e Parceiros</Link>
     </div>
 </main>
 
 <style>
     .content {
         @apply flex flex-col items-start min-h-screen w-full bg-cover;
-        background-image: url('/background/background-index-2.png');
-    } 
+    }
 
     .links {
         @apply flex flex-col gap-4;

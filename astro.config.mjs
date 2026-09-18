@@ -3,5 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://quitungo.guilhermeassuncao.dev',
+    site: 'https://guilhermeassuncao.github.io',
+    base: '/quitungo-astro',
+    trailingSlash: 'ignore',
 });
