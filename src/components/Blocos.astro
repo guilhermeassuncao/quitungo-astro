@@ -14,6 +14,7 @@ import Image from './Image.astro';
 import Video from './Video.astro';
 import Audio from './Audio.astro';
 import Media from './Media.astro';
+import LinkExterno from './LinkExterno.astro';
 import Document from './Document.astro';
 import Gallery from './Gallery.astro';
 
@@ -84,6 +85,17 @@ function idDoYoutube(url: string | undefined): string | null {
                         author={item.Autor || autorPadrao}
                         ext={item.Documento.ext}
                         size={item.Documento.size}
+                    />
+                ) : null;
+
+            case 'pagina.link-externo':
+                return item.Url ? (
+                    <LinkExterno
+                        nome={item.Nome}
+                        url={item.Url}
+                        autoria={item.Autoria}
+                        revista={item.Revista}
+                        ano={item.Ano}
                     />
                 ) : null;
 

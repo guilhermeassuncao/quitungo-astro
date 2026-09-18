@@ -1,0 +1,84 @@
+---
+/**
+ * Cartão de link externo (artigo em revista, portal, site).
+ *   nome     texto clicável, obrigatório
+ *   url      endereço, obrigatório
+ *   autoria  quem escreveu, opcional
+ *   revista  onde foi publicado, opcional
+ *   ano      ano da publicação, opcional
+ */
+const { nome, url, autoria = '', revista = '', ano = '' } = Astro.props;
+
+const meta = [revista, ano].filter(Boolean).join(' · ');
+---
+
+<a href={url} class="card group" target="_blank" rel="noopener noreferrer">
+    <div class="icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+        </svg>
+    </div>
+    <div class="info">
+        {meta && <span class="meta">{meta}</span>}
+        <span class="nome">{nome}</span>
+        {autoria && <span class="autoria">{autoria}</span>}
+    </div>
+    <span class="botao">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17 17 7" />
+            <path d="M8 7h9v9" />
+        </svg>
+        Acessar
+    </span>
+</a>
+
+<style>
+    .card {
+        @apply flex items-center gap-4 my-8 p-4 rounded-lg border border-zinc-200 bg-white no-underline transition;
+        @apply hover:border-orange-300 hover:shadow-md;
+    }
+
+    .icone {
+        @apply shrink-0 w-12 h-12 rounded-md bg-orange-50 text-orange-500 flex items-center justify-center;
+    }
+
+    .icone svg {
+        @apply w-7 h-7;
+    }
+
+    .info {
+        @apply flex flex-col gap-0.5 min-w-0 flex-1;
+    }
+
+    .meta {
+        @apply text-xs font-semibold uppercase tracking-wide text-zinc-400;
+    }
+
+    .nome {
+        @apply text-zinc-800 font-medium leading-snug group-hover:text-orange-600 transition-colors;
+    }
+
+    .autoria {
+        @apply text-sm text-zinc-500;
+    }
+
+    .botao {
+        @apply shrink-0 inline-flex items-center gap-2 bg-orange-500 text-white text-sm font-semibold px-4 py-2 rounded;
+        @apply group-hover:bg-orange-600 transition;
+    }
+
+    .botao svg {
+        @apply w-4 h-4;
+    }
+
+    @media (max-width: 640px) {
+        .card {
+            @apply flex-wrap;
+        }
+
+        .botao {
+            @apply w-full justify-center;
+        }
+    }
+</style>
